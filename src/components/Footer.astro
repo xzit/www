@@ -1,0 +1,29 @@
+---
+const { title } = Astro.props;
+---
+
+<footer class="outline-border w-full outline-1">
+  <div class="mx-auto">
+    <div class="grid grid-rows-2 justify-between text-sm md:grid-cols-3">
+      <div class="col-span-1 row-span-2 p-4 py-6 md:border-r md:p-8"></div>
+      <div
+        class="col-span-2 h-min w-full flex-1 border-t px-4 py-6 md:border-t-0 md:p-6"
+      >
+        <div class="flex w-full justify-between gap-4"></div>
+      </div>
+      <div class="col-span-2 h-min w-full self-end border-t px-4 py-6 md:p-6">
+        <div
+          class="flex w-full flex-col-reverse items-center justify-center gap-4 self-end md:flex-row md:justify-between"
+        >
+          <span class="text-center md:text-left"
+            >&copy; {new Date().getFullYear()}
+            {title}. Todos los derechos reservados.</span
+          >
+          <a href="/privacy" class="underline hover:no-underline">
+            Aviso de privacidad
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

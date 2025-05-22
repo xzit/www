@@ -1,0 +1,56 @@
+---
+import "../styles/global.css";
+const { content } = Astro.props;
+
+import { ModeToggle } from "@/components/ModeToggle";
+import { Font } from "astro:assets";
+import Navigation from "@/components/Navigation.astro";
+import Footer from "@/components/Footer.astro";
+import keystaticConfig from "keystatic.config";
+import { createReader } from "@keystatic/core/reader";
+
+const reader = createReader(process.cwd(), keystaticConfig);
+const settings = await reader.singletons.settings.read();
+---
+
+<script is:inline>
+  const getThemePreference = () => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  };
+  const isDark = getThemePreference() === "dark";
+  document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+
+  if (typeof localStorage !== "undefined") {
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  }
+</script>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{content.title}</title>
+    <Font cssVariable="--font-geist-mono" preload />
+    <Font cssVariable="--font-vt323" preload />
+  </head>
+  <body>
+    <div class="grid min-h-dvh grid-rows-[auto_1fr_auto]">
+      <Navigation />
+      <slot />
+      <Footer title={settings?.title} />
+    </div>
+  </body>
+</html>

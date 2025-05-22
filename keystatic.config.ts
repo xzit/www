@@ -1,0 +1,70 @@
+import { config, fields, collection, singleton } from "@keystatic/core";
+
+export default config({
+  storage: {
+    kind: "local",
+  },
+  collections: {
+    posts: collection({
+      label: "Posts",
+      slugField: "title",
+      path: "src/content/posts/*",
+      entryLayout: "content",
+      format: { contentField: "content" },
+      schema: {
+        title: fields.slug({ name: { label: "Título" } }),
+        content: fields.markdoc({ label: "Contenido" }),
+      },
+    }),
+  },
+  singletons: {
+    sidebar: singleton({
+      label: "Sidebar",
+      path: "src/content/sidebar",
+      schema: {
+        about: fields.object({
+          title: fields.text({ label: "Título" }),
+          description: fields.markdoc.inline({
+            label: "Descripción",
+          }),
+        }),
+        social: fields.array(
+          fields.object({
+            label: fields.select({
+              label: "Red social",
+              options: [
+                { label: "Github", value: "github" },
+                { label: "LinkedIn", value: "linkedin" },
+                { label: "Facebook", value: "facebook" },
+                { label: "Instagram", value: "instagram" },
+                { label: "X", value: "x" },
+                { label: "Bluesky", value: "bluesky" },
+              ],
+              defaultValue: "github",
+            }),
+            url: fields.text({ label: "URL" }),
+          }),
+          {
+            label: "Red social",
+            itemLabel: (props) =>
+              props.fields.label.value || "Selecciona una red social",
+          },
+        ),
+      },
+    }),
+    settings: singleton({
+      label: "Configuración",
+      path: "src/content/settings",
+      schema: {
+        title: fields.text({ label: "Título" }),
+        seo: fields.object({
+          title: fields.text({ label: "Título SEO" }),
+          description: fields.text({
+            label: "Descripción SEO",
+            multiline: true,
+          }),
+        }),
+      },
+    }),
+  },
+});
