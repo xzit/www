@@ -1,7 +1,18 @@
 ---
 import "@/styles/global.css";
 import Layout from "@/layouts/main.astro";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  RiArrowRightLine,
+  RiArrowRightLongLine,
   RiBlueskyFill,
   RiFacebookCircleFill,
   RiGithubFill,
@@ -14,9 +25,27 @@ import ScrambleText from "@/components/ScrambleText";
 import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "keystatic.config";
 import Markdoc, { type Node } from "@markdoc/markdoc";
+import { cn } from "@/lib/utils";
 
 const reader = createReader(process.cwd(), keystaticConfig);
 const sidebar = await reader.singletons.sidebar.read();
+const home = await reader.singletons.home.read();
+
+type Project = Awaited<ReturnType<typeof reader.collections.projects.read>>;
+type FeaturedProject = (Project extends null ? never : Project) & {
+  slug: string;
+};
+
+let projects: FeaturedProject[] = [];
+if (home && Array.isArray(home.projects)) {
+  const allFeatured = await Promise.all(
+    home.projects.map(async (slug) => {
+      const project = await reader.collections.projects.read(slug);
+      return { ...project, slug } as FeaturedProject;
+    }),
+  );
+  projects = allFeatured.filter((project) => project !== null);
+}
 
 const iconMap: Record<string, RemixiconComponentType> = {
   github: RiGithubFill,
@@ -28,18 +57,20 @@ const iconMap: Record<string, RemixiconComponentType> = {
 };
 ---
 
-<Layout content={{ title: "Xzit" }}>
+<Layout title="Xzit">
   <div class="mx-auto w-full max-w-7xl">
-    <div class="flex flex-col gap-x-12 gap-y-8 p-4 md:p-8 lg:flex-row">
+    <div
+      class="flex flex-col gap-x-12 gap-y-8 p-4 md:px-8 md:py-10 lg:flex-row"
+    >
       <div
         class="z-40 flex w-full flex-col gap-8 lg:sticky lg:top-24 lg:max-w-xs lg:self-start"
       >
         <div class="flex flex-col gap-4">
-          <h1 class="font-heading text-7xl">
+          <h1 class="font-logo text-7xl">
             <ScrambleText text={sidebar?.about.title} client:load />
           </h1>
           <div
-            class="text-muted-foreground -indent-1 text-lg text-balance hyphens-auto [&_a]:underline [&_a:hover]:no-underline [&_article]:space-y-4"
+            class="text-muted-foreground [&_a]:hover:bg-foreground [&_a]:hover:text-background -indent-1 text-lg text-balance hyphens-auto [&_a]:underline [&_a]:decoration-2 [&_a]:underline-offset-3 [&_a]:hover:no-underline [&_article]:space-y-4"
             set:html={Markdoc.renderers.html(
               Markdoc.transform(sidebar?.about.description?.node as Node),
             )}
@@ -64,7 +95,67 @@ const iconMap: Record<string, RemixiconComponentType> = {
           }
         </div>
       </div>
-      <div class="flex-1 space-y-6"></div>
+      <div class="flex-1 space-y-8">
+        <div class="space-y-4">
+          <h2 class="text-4xl">Proyectos</h2>
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
+            {
+              projects.map((project, index) => (
+                <Card className="grid grid-rows-[auto_1fr_auto]">
+                  <CardHeader>
+                    <CardTitle className="text-xl">{project.title}</CardTitle>
+                    <CardDescription className="flex items-center gap-3">
+                      <span class="relative flex size-2">
+                        <span
+                          class={cn(
+                            "absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75",
+                            project.status === "published"
+                              ? "bg-green-400"
+                              : project.status === "in-progress"
+                                ? "bg-orange-400"
+                                : "bg-red-400",
+                          )}
+                        />
+                        <span
+                          class={cn(
+                            "relative inline-flex size-2 rounded-full bg-sky-500",
+                            project.status === "published"
+                              ? "bg-green-500"
+                              : project.status === "in-progress"
+                                ? "bg-orange-500"
+                                : "bg-red-500",
+                          )}
+                        />
+                      </span>
+                      <span class="text-muted-foreground">
+                        {project.status === "published"
+                          ? "En línea"
+                          : project.status === "in-progress"
+                            ? "En desarrollo"
+                            : "En pausa"}
+                      </span>
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p>{project.description}</p>
+                  </CardContent>
+                  <CardFooter>
+                    {project.url && (
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        class={cn(buttonVariants({ variant: "outline" }))}
+                      >
+                        Ver proyecto <RiArrowRightLine className="size-5" />
+                      </a>
+                    )}
+                  </CardFooter>
+                </Card>
+              ))
+            }
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </Layout>

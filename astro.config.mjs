@@ -7,6 +7,7 @@ import keystatic from "@keystatic/astro";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://xzit.dev/",
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
@@ -16,7 +17,6 @@ export default defineConfig({
       noExternal: ["gsap", "gsap/ScrambleTextPlugin"],
     },
   },
-
   integrations: [react(), markdoc(), keystatic()],
   experimental: {
     fonts: [
@@ -24,11 +24,23 @@ export default defineConfig({
         provider: fontProviders.fontsource(),
         name: "Geist Mono",
         cssVariable: "--font-geist-mono",
+        fallbacks: ["monospace"],
+        weights: ["400 700"],
       },
       {
         provider: fontProviders.fontsource(),
         name: "VT323",
         cssVariable: "--font-vt323",
+        fallbacks: ["monospace"],
+        weights: ["400 700"],
+      },
+      {
+        provider: fontProviders.fontsource(),
+        name: "Xanh Mono",
+        cssVariable: "--font-xanh-mono",
+        fallbacks: ["serif"],
+        weights: ["400"],
+        styles: ["normal", "italic"],
       },
     ],
   },

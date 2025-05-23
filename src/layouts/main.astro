@@ -1,13 +1,18 @@
 ---
-import "../styles/global.css";
-const { content } = Astro.props;
+import "@/styles/global.css";
 
-import { ModeToggle } from "@/components/ModeToggle";
 import { Font } from "astro:assets";
 import Navigation from "@/components/Navigation.astro";
 import Footer from "@/components/Footer.astro";
 import keystaticConfig from "keystatic.config";
 import { createReader } from "@keystatic/core/reader";
+
+const { title, description } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImageURL = new URL("/assets/images/image.webp", Astro.url);
+
+const defaultTitle = "Joaquín Olivas - Emprendedor Digital";
+const defaultDescription = "";
 
 const reader = createReader(process.cwd(), keystaticConfig);
 const settings = await reader.singletons.settings.read();
@@ -37,14 +42,18 @@ const settings = await reader.singletons.settings.read();
   }
 </script>
 
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{content.title}</title>
+    <link rel="canonical" href={canonicalURL} />
+    <title>{title ? title : defaultTitle}</title>
+    <meta name="description" content={description || defaultDescription} />
+    <meta property="og:image" content={socialImageURL} />
     <Font cssVariable="--font-geist-mono" preload />
     <Font cssVariable="--font-vt323" preload />
+    <Font cssVariable="--font-xanh-mono" preload />
   </head>
   <body>
     <div class="grid min-h-dvh grid-rows-[auto_1fr_auto]">

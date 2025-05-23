@@ -6,7 +6,9 @@
 @theme inline {
   --font-sans: var(--font-geist-mono);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-vt323);
+  --font-heading: var(--font-xanh-mono);
+  --font-serif: var(--font-xanh-mono);
+  --font-logo: var(--font-vt323);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -119,5 +121,13 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
   }
 }

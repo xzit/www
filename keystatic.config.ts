@@ -16,8 +16,56 @@ export default config({
         content: fields.markdoc({ label: "Contenido" }),
       },
     }),
+    projects: collection({
+      label: "Proyectos",
+      slugField: "title",
+      path: "src/content/projects/*",
+      format: { contentField: "content" },
+      schema: {
+        title: fields.slug({ name: { label: "Título" } }),
+        description: fields.text({
+          label: "Descripción",
+          multiline: true,
+        }),
+        content: fields.markdoc({ label: "Contenido" }),
+        status: fields.select({
+          label: "Estado",
+          options: [
+            { label: "En línea", value: "published" },
+            { label: "En desarrollo", value: "in-progress" },
+            { label: "En pausa", value: "paused" },
+          ],
+          defaultValue: "paused",
+        }),
+        url: fields.url({ label: "URL" }),
+        image: fields.image({ label: "Imagen" }),
+        seo: fields.object({
+          title: fields.text({ label: "Título SEO" }),
+          description: fields.text({
+            label: "Descripción SEO",
+            multiline: true,
+          }),
+        }),
+      },
+    }),
   },
   singletons: {
+    home: singleton({
+      label: "Inicio",
+      path: "src/content/home",
+      schema: {
+        projects: fields.array(
+          fields.relationship({
+            label: "Proyectos destacados",
+            collection: "projects",
+          }),
+          {
+            label: "Proyectos destacados",
+            itemLabel: (props) => props.value || "Selecciona un proyecto",
+          },
+        ),
+      },
+    }),
     sidebar: singleton({
       label: "Sidebar",
       path: "src/content/sidebar",
