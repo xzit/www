@@ -13,7 +13,14 @@ export default config({
       format: { contentField: "content" },
       schema: {
         title: fields.slug({ name: { label: "Título" } }),
+        description: fields.text({
+          label: "Descripción",
+          multiline: true,
+        }),
         content: fields.markdoc({ label: "Contenido" }),
+        published: fields.date({
+          label: "Publicado",
+        }),
       },
     }),
     projects: collection({

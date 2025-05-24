@@ -7,6 +7,7 @@ const RandomText = () => {
     "No sabía como hacerlo, pero lo hice",
     "¿Probaste apagar y volver a encender?",
     "Error 404: Chiste no encontrado",
+    "Error 418: Soy una tetera",
     "El chiste está en otro castillo",
   ];
 

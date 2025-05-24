@@ -1,6 +1,9 @@
 ---
 import "@/styles/global.css";
 import Layout from "@/layouts/main.astro";
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
+import { utc } from "@date-fns/utc";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -12,7 +15,6 @@ import {
 } from "@/components/ui/card";
 import {
   RiArrowRightLine,
-  RiArrowRightLongLine,
   RiBlueskyFill,
   RiFacebookCircleFill,
   RiGithubFill,
@@ -26,6 +28,7 @@ import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "keystatic.config";
 import Markdoc, { type Node } from "@markdoc/markdoc";
 import { cn } from "@/lib/utils";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 const reader = createReader(process.cwd(), keystaticConfig);
 const sidebar = await reader.singletons.sidebar.read();
@@ -46,6 +49,15 @@ if (home && Array.isArray(home.projects)) {
   );
   projects = allFeatured.filter((project) => project !== null);
 }
+
+const allPosts: CollectionEntry<"posts">[] = await getCollection(
+  "posts",
+  (post: any) => post.data.published,
+);
+const posts: CollectionEntry<"posts">[] = allPosts.sort(
+  (a, b) =>
+    new Date(b.data.published).getTime() - new Date(a.data.published).getTime(),
+);
 
 const iconMap: Record<string, RemixiconComponentType> = {
   github: RiGithubFill,
@@ -95,12 +107,12 @@ const iconMap: Record<string, RemixiconComponentType> = {
           }
         </div>
       </div>
-      <div class="flex-1 space-y-8">
+      <div class="flex-1 space-y-10">
         <div class="space-y-4">
           <h2 class="text-4xl">Proyectos</h2>
           <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
             {
-              projects.map((project, index) => (
+              projects.slice(0, 11).map((project) => (
                 <Card className="grid grid-rows-[auto_1fr_auto]">
                   <CardHeader>
                     <CardTitle className="text-xl">{project.title}</CardTitle>
@@ -151,6 +163,33 @@ const iconMap: Record<string, RemixiconComponentType> = {
                     )}
                   </CardFooter>
                 </Card>
+              ))
+            }
+          </div>
+        </div>
+        <div class="space-y-6">
+          <h2 class="border-b pb-4 text-4xl">Blog</h2>
+          <div class="grid grid-cols-1 gap-6 divide-y">
+            {
+              posts.map((post) => (
+                <div class="space-y-6 pb-6">
+                  <div class="space-y-2">
+                    <a
+                      href={`/blog/${post.slug}`}
+                      class="hover:bg-foreground hover:text-background inline-flex flex-col transition-colors"
+                    >
+                      <h3 class="text-3xl">{post.data.title}</h3>
+                    </a>
+                    <p class="text-muted-foreground">{post.data.description}</p>
+                  </div>
+                  <p class="text-muted-foreground text-sm">
+                    {post.data.published &&
+                      format(new Date(post.data.published), "PP", {
+                        locale: es,
+                        in: utc,
+                      })}
+                  </p>
+                </div>
               ))
             }
           </div>
