@@ -6,6 +6,7 @@ import {
   TooltipContent,
   TooltipProvider,
 } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
 import {
   RiFigmaFill,
@@ -36,17 +37,23 @@ const iconMap: Record<string, { name: string; icon: RemixiconComponentType }> =
 export default function TechStack({ stack }: Props) {
   return (
     <TooltipProvider>
-      <div className="grid w-full grid-cols-3 items-center justify-center divide-x sm:grid-cols-6">
-        {stack.map((stack) => {
-          const iconData = iconMap[stack.tech];
+      <div className="grid w-full grid-cols-3 items-center justify-center divide-x divide-y sm:grid-cols-6 md:divide-y-0">
+        {stack.map((value, i) => {
+          const iconData = iconMap[value.tech];
           if (!iconData) return null;
 
           const { icon: Icon, name } = iconData;
 
           return (
-            <Tooltip key={stack.tech}>
+            <Tooltip key={value.tech}>
               <TooltipTrigger asChild>
-                <div className="hover:bg-accent dark:hover:bg-accent/50 flex aspect-square items-center justify-center p-4 transition-colors">
+                <div
+                  className={cn(
+                    "hover:bg-accent dark:hover:bg-accent/50 flex aspect-square items-center justify-center p-4 transition-colors",
+                    i >= stack.length - 3 && "border-b-0",
+                    (i + 1) % 3 === 0 && "border-r-0 sm:border-r",
+                  )}
+                >
                   <Icon className="size-16" />
                 </div>
               </TooltipTrigger>
