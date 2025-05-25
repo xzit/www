@@ -36,23 +36,25 @@ const iconMap: Record<string, { name: string; icon: RemixiconComponentType }> =
 export default function TechStack({ stack }: Props) {
   return (
     <TooltipProvider>
-      {stack.map((stack) => {
-        const iconData = iconMap[stack.tech];
-        if (!iconData) return null;
+      <div className="grid w-full grid-cols-3 items-center justify-center divide-x sm:grid-cols-6">
+        {stack.map((stack) => {
+          const iconData = iconMap[stack.tech];
+          if (!iconData) return null;
 
-        const { icon: Icon, name } = iconData;
+          const { icon: Icon, name } = iconData;
 
-        return (
-          <Tooltip key={stack.tech}>
-            <TooltipTrigger asChild>
-              <div>
-                <Icon className="size-12" />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>{name}</TooltipContent>
-          </Tooltip>
-        );
-      })}
+          return (
+            <Tooltip key={stack.tech}>
+              <TooltipTrigger asChild>
+                <div className="hover:bg-accent dark:hover:bg-accent/50 flex aspect-square items-center justify-center p-4 transition-colors">
+                  <Icon className="size-16" />
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>{name}</TooltipContent>
+            </Tooltip>
+          );
+        })}
+      </div>
     </TooltipProvider>
   );
 }

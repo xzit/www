@@ -115,8 +115,8 @@ const posts: CollectionEntry<"posts">[] = allPosts.sort(
     <div class="space-y-4">
       <h2 class="text-4xl">Tecnologías</h2>
       <div class="grid grid-cols-1 gap-6">
-        <Card>
-          <CardContent className="flex gap-6">
+        <Card className="p-0">
+          <CardContent className="p-0">
             <TechStack stack={home?.stack ?? []} client:load />
           </CardContent>
         </Card>
