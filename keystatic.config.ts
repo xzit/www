@@ -71,6 +71,28 @@ export default config({
             itemLabel: (props) => props.value || "Selecciona un proyecto",
           },
         ),
+        stack: fields.array(
+          fields.object({
+            tech: fields.select({
+              label: "Tecnologías",
+              options: [
+                { label: "Next.js", value: "nextjs" },
+                { label: "React.js", value: "reactjs" },
+                { label: "Node.js", value: "nodejs" },
+                { label: "Supabase", value: "supabase" },
+                { label: "Tailwind CSS", value: "tailwindcss" },
+                { label: "Vercel", value: "vercel" },
+                { label: "Figma", value: "figma" },
+              ],
+              defaultValue: "nextjs",
+            }),
+          }),
+          {
+            label: "Tecnologías",
+            itemLabel: (props) =>
+              props.fields.tech.value || "Selecciona una tecnología",
+          },
+        ),
       },
     }),
     sidebar: singleton({

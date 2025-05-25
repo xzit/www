@@ -1,3 +1,10 @@
 projects:
   - cosplay-land
   - emprende-uno
+stack:
+  - tech: nextjs
+  - tech: reactjs
+  - tech: tailwindcss
+  - tech: supabase
+  - tech: vercel
+  - tech: figma

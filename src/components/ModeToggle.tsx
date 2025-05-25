@@ -4,25 +4,30 @@ import { RiMoonFill, RiSunFill } from "@remixicon/react";
 import { Button } from "@/components/ui/button";
 
 export function ModeToggle() {
-  const [theme, setThemeState] = React.useState<"theme-light" | "dark">(
-    "theme-light",
-  );
+  const [theme, setTheme] = React.useState<"dark" | "theme-light">();
 
+  // Leer tema en mount, sincronizado con SSR
   React.useEffect(() => {
-    const isDarkMode = document.documentElement.classList.contains("dark");
-    setThemeState(isDarkMode ? "dark" : "theme-light");
+    const saved = localStorage.getItem("theme") as
+      | "dark"
+      | "theme-light"
+      | null;
+
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+    const initial = saved || (prefersDark ? "dark" : "theme-light");
+
+    document.documentElement.classList.toggle("dark", initial === "dark");
+    setTheme(initial);
   }, []);
 
-  React.useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [theme]);
-
+  // Cambia el modo y guarda preferencia
   const toggleTheme = () => {
-    setThemeState((prev) => (prev === "dark" ? "theme-light" : "dark"));
+    const newTheme = theme === "dark" ? "theme-light" : "dark";
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+    localStorage.setItem("theme", newTheme);
+    setTheme(newTheme);
   };
 
   return (
