@@ -1,28 +1,14 @@
 ---
 import "@/styles/global.css";
 import Layout from "@/layouts/sidebar.astro";
-import { getCollection, type CollectionEntry } from "astro:content";
-import Markdoc, { type Node } from "@markdoc/markdoc";
 import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "keystatic.config";
-import { cn } from "@/lib/utils";
-import { format } from "date-fns";
-import { es } from "date-fns/locale";
-import { utc } from "@date-fns/utc";
-import { Button, buttonVariants } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import TechStack from "@/components/TechStack";
-import { RiArrowRightLine } from "@remixicon/react";
+import TechStack from "@/components/home/TechStack";
+import Projects from "@/components/home/Projects.astro";
+import LatestPosts from "@/components/home/LatestPosts.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 const reader = createReader(process.cwd(), keystaticConfig);
-const sidebar = await reader.singletons.sidebar.read();
 const home = await reader.singletons.home.read();
 
 type Project = Awaited<ReturnType<typeof reader.collections.projects.read>>;
@@ -55,99 +41,15 @@ const posts: CollectionEntry<"posts">[] = allPosts.sort(
   <div class="flex-1 space-y-10">
     <div class="space-y-4">
       <h2 class="text-4xl">Proyectos</h2>
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
-        {
-          projects.slice(0, 11).map((project) => (
-            <Card className="grid grid-rows-[auto_1fr_auto]">
-              <CardHeader>
-                <CardTitle className="text-xl">{project.title}</CardTitle>
-                <CardDescription className="flex items-center gap-3">
-                  <span class="relative flex size-2">
-                    <span
-                      class={cn(
-                        "absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75",
-                        project.status === "published"
-                          ? "bg-green-400"
-                          : project.status === "in-progress"
-                            ? "bg-orange-400"
-                            : "bg-red-400",
-                      )}
-                    />
-                    <span
-                      class={cn(
-                        "relative inline-flex size-2 rounded-full bg-sky-500",
-                        project.status === "published"
-                          ? "bg-green-500"
-                          : project.status === "in-progress"
-                            ? "bg-orange-500"
-                            : "bg-red-500",
-                      )}
-                    />
-                  </span>
-                  <span class="text-muted-foreground">
-                    {project.status === "published"
-                      ? "En línea"
-                      : project.status === "in-progress"
-                        ? "En desarrollo"
-                        : "En pausa"}
-                  </span>
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>{project.description}</p>
-              </CardContent>
-              <CardFooter>
-                {project.url && (
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    class={cn(buttonVariants({ variant: "outline" }))}
-                  >
-                    Ver proyecto <RiArrowRightLine className="size-5" />
-                  </a>
-                )}
-              </CardFooter>
-            </Card>
-          ))
-        }
-      </div>
+      <Projects items={projects} />
     </div>
     <div class="space-y-4">
       <h2 class="text-4xl">Tecnologías</h2>
-      <div class="grid grid-cols-1 gap-6">
-        <Card className="p-0">
-          <CardContent className="p-0">
-            <TechStack stack={home?.stack ?? []} client:load />
-          </CardContent>
-        </Card>
-      </div>
+      <TechStack stack={home?.stack ?? []} client:load />
     </div>
-    <div class="space-y-6">
-      <h2 class="border-b pb-4 text-4xl">Blog</h2>
-      <div class="grid grid-cols-1 gap-6 divide-y">
-        {
-          posts.map((post) => (
-            <div class="space-y-6 pb-6">
-              <div class="space-y-2">
-                <a
-                  href={`/blog/${post.slug}`}
-                  class="hover:bg-foreground hover:text-background inline-flex flex-col transition-colors"
-                >
-                  <h3 class="text-3xl">{post.data.title}</h3>
-                </a>
-                <p class="text-muted-foreground">{post.data.description}</p>
-              </div>
-              <p class="text-muted-foreground text-sm">
-                {post.data.published &&
-                  format(new Date(post.data.published), "PP", {
-                    locale: es,
-                    in: utc,
-                  })}
-              </p>
-            </div>
-          ))
-        }
-      </div>
+    <div class="space-y-4">
+      <h2 class="text-4xl">Blog</h2>
+      <LatestPosts posts={posts.slice(0, 11)} />
     </div>
   </div>
 </Layout>

@@ -105,6 +105,7 @@ export default config({
             label: "Descripción",
           }),
         }),
+        cv: fields.url({ label: "CV" }),
         social: fields.array(
           fields.object({
             label: fields.select({

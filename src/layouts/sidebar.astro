@@ -6,6 +6,7 @@ import keystaticConfig from "keystatic.config";
 
 import {
   RiBlueskyFill,
+  RiDownloadLine,
   RiFacebookCircleFill,
   RiGithubFill,
   RiInstagramLine,
@@ -14,6 +15,8 @@ import {
   type RemixiconComponentType,
 } from "@remixicon/react";
 import ScrambleText from "@/components/ScrambleText";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const { title, description } = Astro.props;
 
@@ -50,6 +53,20 @@ const iconMap: Record<string, { name: string; icon: RemixiconComponentType }> =
             )}
           />
         </div>
+        {
+          sidebar?.cv && (
+            <div class="flex gap-4">
+              <a
+                href={sidebar?.cv}
+                target="_blank"
+                rel="noopener noreferrer"
+                class={cn(buttonVariants({ size: "lg" }), "")}
+              >
+                <RiDownloadLine className="size-5" /> Descargar CV
+              </a>
+            </div>
+          )
+        }
         <div class="flex gap-4">
           {
             sidebar?.social?.map(({ url, label }) => {
