@@ -41,7 +41,7 @@ export default function TechStack({ stack }: Props) {
       <Card className="p-0">
         <CardContent className="p-0">
           <TooltipProvider>
-            <div className="grid w-full grid-cols-3 items-center justify-center divide-x divide-y sm:grid-cols-6 md:divide-y-0">
+            <div className="grid w-full grid-cols-3 items-center justify-center divide-x divide-y sm:grid-cols-6 sm:divide-y-0">
               {stack.map((value, i) => {
                 const iconData = iconMap[value.tech];
                 if (!iconData) return null;
@@ -55,7 +55,8 @@ export default function TechStack({ stack }: Props) {
                         className={cn(
                           "hover:bg-accent dark:hover:bg-accent/50 flex aspect-square items-center justify-center p-4 transition-colors",
                           i >= stack.length - 3 && "border-b-0",
-                          (i + 1) % 3 === 0 && "border-r-0 sm:border-r",
+                          (i + 1) % 3 === 0 &&
+                            "border-r-0 last:border-r-0 sm:border-r",
                         )}
                       >
                         <Icon className="size-16" />

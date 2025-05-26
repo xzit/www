@@ -5,7 +5,13 @@ import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 
 gsap.registerPlugin(useGSAP, ScrambleTextPlugin);
 
-export default function ScrambleText({ text }: { text?: string }) {
+export default function ScrambleText({
+  text,
+  chars,
+}: {
+  text: string;
+  chars?: string;
+}) {
   const headingRef = useRef<HTMLHeadingElement>(null);
 
   useGSAP(() => {
@@ -13,7 +19,7 @@ export default function ScrambleText({ text }: { text?: string }) {
       duration: 1,
       scrambleText: {
         text: text || "",
-        chars: "0123456789",
+        chars: chars || "upperCase",
       },
       onComplete: () => {},
     });
@@ -31,7 +37,7 @@ export default function ScrambleText({ text }: { text?: string }) {
         ease: "sine.in",
         scrambleText: {
           text: text || "",
-          chars: "01",
+          chars: chars || "upperCase",
           speed: 0,
           revealDelay: 0.3,
         },

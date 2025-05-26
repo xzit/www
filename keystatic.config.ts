@@ -21,6 +21,13 @@ export default config({
         published: fields.date({
           label: "Publicado",
         }),
+        seo: fields.object({
+          title: fields.text({ label: "Título SEO" }),
+          description: fields.text({
+            label: "Descripción SEO",
+            multiline: true,
+          }),
+        }),
       },
     }),
     projects: collection({
@@ -104,8 +111,13 @@ export default config({
           description: fields.markdoc.inline({
             label: "Descripción",
           }),
+          cv: fields.file({
+            label: "CV",
+            directory: "public/files/resumes",
+            publicPath: "/files/resumes/",
+          }),
         }),
-        cv: fields.url({ label: "CV" }),
+        github: fields.url({ label: "Github" }),
         social: fields.array(
           fields.object({
             label: fields.select({
@@ -120,7 +132,7 @@ export default config({
               ],
               defaultValue: "github",
             }),
-            url: fields.text({ label: "URL" }),
+            url: fields.url({ label: "URL" }),
           }),
           {
             label: "Red social",

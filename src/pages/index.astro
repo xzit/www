@@ -39,17 +39,29 @@ const posts: CollectionEntry<"posts">[] = allPosts.sort(
 
 <Layout title="Xzit" description="">
   <div class="flex-1 space-y-10">
-    <div class="space-y-4">
-      <h2 class="text-4xl">Proyectos</h2>
-      <Projects items={projects} />
-    </div>
-    <div class="space-y-4">
-      <h2 class="text-4xl">Tecnologías</h2>
-      <TechStack stack={home?.stack ?? []} client:load />
-    </div>
-    <div class="space-y-4">
-      <h2 class="text-4xl">Blog</h2>
-      <LatestPosts posts={posts.slice(0, 11)} />
-    </div>
+    {
+      projects.length !== 0 && (
+        <div class="space-y-4">
+          <h2 class="text-4xl">Proyectos</h2>
+          <Projects items={projects} />
+        </div>
+      )
+    }
+    {
+      home?.stack?.length !== 0 && (
+        <div class="space-y-4">
+          <h2 class="text-4xl">Tecnologías</h2>
+          <TechStack stack={home?.stack ?? []} client:load />
+        </div>
+      )
+    }
+    {
+      posts.length !== 0 && (
+        <div class="space-y-4">
+          <h2 class="text-4xl">Blog</h2>
+          <LatestPosts posts={posts.slice(0, 11)} />
+        </div>
+      )
+    }
   </div>
 </Layout>

@@ -1,0 +1,19 @@
+---
+import Layout from "@/layouts/main.astro";
+
+const { ...post } = Astro.props;
+---
+
+<Layout
+  title={post.data.seo?.value?.title || post.data.title}
+  description={post.data.seo?.value?.description || post.data.description}
+>
+  <div class="mx-auto w-full max-w-7xl p-4">
+    <div
+      class="prose prose-primary prose-lg mx-auto max-w-2xl [&_img]:rounded-lg [&>article>*:first-child]:mt-0 [&>article>*:last-child]:mb-0"
+    >
+      <h1 class="text-4xl">{post.data.title}</h1>
+      <slot />
+    </div>
+  </div>
+</Layout>

@@ -44,7 +44,11 @@ const iconMap: Record<string, { name: string; icon: RemixiconComponentType }> =
       >
         <div class="flex flex-col gap-4">
           <h1 class="font-logo text-7xl">
-            <ScrambleText text={sidebar?.about.title} client:load />
+            <ScrambleText
+              text={sidebar?.about.title || ""}
+              chars="01"
+              client:load
+            />
           </h1>
           <div
             class="text-muted-foreground [&_a]:hover:bg-foreground [&_a]:hover:text-background -indent-1 text-lg text-balance hyphens-auto [&_a]:underline [&_a]:decoration-2 [&_a]:underline-offset-3 [&_a]:hover:no-underline [&_article]:space-y-4"
@@ -54,15 +58,16 @@ const iconMap: Record<string, { name: string; icon: RemixiconComponentType }> =
           />
         </div>
         {
-          sidebar?.cv && (
+          sidebar?.about.cv && (
             <div class="flex gap-4">
               <a
-                href={sidebar?.cv}
+                href={sidebar?.about.cv}
                 target="_blank"
                 rel="noopener noreferrer"
                 class={cn(buttonVariants({ size: "lg" }), "")}
               >
-                <RiDownloadLine className="size-5" /> Descargar CV
+                <RiDownloadLine className="size-5" />
+                Descargar CV
               </a>
             </div>
           )
