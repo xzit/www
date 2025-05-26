@@ -117,7 +117,6 @@ export default config({
             publicPath: "/files/resumes/",
           }),
         }),
-        github: fields.url({ label: "Github" }),
         social: fields.array(
           fields.object({
             label: fields.select({
@@ -154,6 +153,7 @@ export default config({
             multiline: true,
           }),
         }),
+        github: fields.url({ label: "Github" }),
       },
     }),
   },

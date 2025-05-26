@@ -7,12 +7,12 @@ import { buttonVariants } from "@/components/ui/button";
 import { RiGithubFill } from "@remixicon/react";
 
 const reader = createReader(process.cwd(), keystaticConfig);
-const sidebar = await reader.singletons.sidebar.read();
+const settings = await reader.singletons.settings.read();
 ---
 
 <div class="bg-background sticky top-0 z-50 border-b">
   <div class="mx-auto flex items-center justify-between">
-    <div class="w-full max-w-[200px] sm:border-r">
+    <div class="-mr-px w-full border-r sm:max-w-[240px]">
       <a
         href="/"
         class="hover:bg-foreground hover:text-background outline-foreground relative z-10 inline-flex h-16 w-full items-center justify-center p-4 transition-colors hover:outline-1 sm:px-6"
@@ -44,7 +44,7 @@ const sidebar = await reader.singletons.sidebar.read();
         <ModeToggle client:load />
       </div>
       <a
-        href={sidebar?.github}
+        href={settings?.github}
         target="_blank"
         rel="noopener noreferrer"
         class={cn(buttonVariants({ variant: "ghost", size: "icon" }), "p-8")}
