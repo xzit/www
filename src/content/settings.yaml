@@ -1,5 +1,10 @@
-title: Xzit
+author: Xzit
 seo:
   title: Xzit
   description: Lorem ipsum dolor sit amet
-github: https://github.com/xzit/www
+navbar:
+  github: https://github.com/xzit/www
+footer:
+  timezone: America/Mexico_City
+  location: Ciudad del Carmen, MX
+  coordinates: 18.6510, -91.8025

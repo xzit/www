@@ -21,7 +21,7 @@ import { cn } from "@/lib/utils";
 const { title, description } = Astro.props;
 
 const reader = createReader(process.cwd(), keystaticConfig);
-const sidebar = await reader.singletons.sidebar.read();
+const home = await reader.singletons.home.read();
 
 const iconMap: Record<string, { name: string; icon: RemixiconComponentType }> =
   {
@@ -45,23 +45,23 @@ const iconMap: Record<string, { name: string; icon: RemixiconComponentType }> =
         <div class="flex flex-col gap-4">
           <h1 class="font-logo text-7xl">
             <ScrambleText
-              text={sidebar?.about.title || ""}
+              text={home?.about.title || ""}
               chars="01"
               client:load
             />
           </h1>
           <div
-            class="text-muted-foreground [&_a]:hover:bg-foreground [&_a]:hover:text-background -indent-1 text-lg text-balance hyphens-auto [&_a]:underline [&_a]:decoration-2 [&_a]:underline-offset-3 [&_a]:hover:no-underline [&_article]:space-y-4"
+            class="text-muted-foreground [&_a]:hover:bg-foreground [&_a]:hover:text-background -indent-1 text-lg text-balance hyphens-auto [&_a]:underline [&_a]:decoration-2 [&_a]:underline-offset-2 [&_a]:transition-colors [&_article]:space-y-4"
             set:html={Markdoc.renderers.html(
-              Markdoc.transform(sidebar?.about.description?.node as Node),
+              Markdoc.transform(home?.about.description?.node as Node),
             )}
           />
         </div>
         {
-          sidebar?.about.cv && (
+          home?.about.cv && (
             <div class="flex gap-4">
               <a
-                href={sidebar?.about.cv}
+                href={home?.about.cv}
                 target="_blank"
                 rel="noopener noreferrer"
                 class={cn(buttonVariants({ size: "lg" }), "")}
@@ -74,7 +74,7 @@ const iconMap: Record<string, { name: string; icon: RemixiconComponentType }> =
         }
         <div class="flex gap-4">
           {
-            sidebar?.social?.map(({ url, label }) => {
+            home?.about.social?.map(({ url, label }) => {
               const Icon = iconMap[label]?.icon;
               return (
                 <a

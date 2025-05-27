@@ -12,6 +12,7 @@
     "@astrojs/markdoc": "^0.14.2",
     "@astrojs/mdx": "^4.2.6",
     "@astrojs/react": "^4.2.7",
+    "@date-fns/tz": "^1.2.0",
     "@date-fns/utc": "^2.1.0",
     "@gsap/react": "^2.1.2",
     "@keystatic/astro": "^5.0.6",

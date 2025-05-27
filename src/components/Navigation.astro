@@ -44,7 +44,7 @@ const settings = await reader.singletons.settings.read();
         <ModeToggle client:load />
       </div>
       <a
-        href={settings?.github}
+        href={settings?.navbar.github}
         target="_blank"
         rel="noopener noreferrer"
         class={cn(buttonVariants({ variant: "ghost", size: "icon" }), "p-8")}

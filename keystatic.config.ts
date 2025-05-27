@@ -68,13 +68,46 @@ export default config({
       label: "Inicio",
       path: "src/content/home",
       schema: {
+        about: fields.object({
+          title: fields.text({ label: "Título" }),
+          description: fields.markdoc.inline({
+            label: "Descripción",
+          }),
+          cv: fields.file({
+            label: "CV",
+            directory: "public/files/resumes",
+            publicPath: "/files/resumes/",
+          }),
+          social: fields.array(
+            fields.object({
+              label: fields.select({
+                label: "Red social",
+                options: [
+                  { label: "Github", value: "github" },
+                  { label: "LinkedIn", value: "linkedin" },
+                  { label: "Facebook", value: "facebook" },
+                  { label: "Instagram", value: "instagram" },
+                  { label: "X", value: "x" },
+                  { label: "Bluesky", value: "bluesky" },
+                ],
+                defaultValue: "github",
+              }),
+              url: fields.url({ label: "URL" }),
+            }),
+            {
+              label: "Red social",
+              itemLabel: (props) =>
+                props.fields.label.value || "Selecciona una red social",
+            },
+          ),
+        }),
         projects: fields.array(
           fields.relationship({
-            label: "Proyectos destacados",
+            label: "Proyectos",
             collection: "projects",
           }),
           {
-            label: "Proyectos destacados",
+            label: "Proyectos",
             itemLabel: (props) => props.value || "Selecciona un proyecto",
           },
         ),
@@ -102,50 +135,11 @@ export default config({
         ),
       },
     }),
-    sidebar: singleton({
-      label: "Sidebar",
-      path: "src/content/sidebar",
-      schema: {
-        about: fields.object({
-          title: fields.text({ label: "Título" }),
-          description: fields.markdoc.inline({
-            label: "Descripción",
-          }),
-          cv: fields.file({
-            label: "CV",
-            directory: "public/files/resumes",
-            publicPath: "/files/resumes/",
-          }),
-        }),
-        social: fields.array(
-          fields.object({
-            label: fields.select({
-              label: "Red social",
-              options: [
-                { label: "Github", value: "github" },
-                { label: "LinkedIn", value: "linkedin" },
-                { label: "Facebook", value: "facebook" },
-                { label: "Instagram", value: "instagram" },
-                { label: "X", value: "x" },
-                { label: "Bluesky", value: "bluesky" },
-              ],
-              defaultValue: "github",
-            }),
-            url: fields.url({ label: "URL" }),
-          }),
-          {
-            label: "Red social",
-            itemLabel: (props) =>
-              props.fields.label.value || "Selecciona una red social",
-          },
-        ),
-      },
-    }),
     settings: singleton({
       label: "Configuración",
       path: "src/content/settings",
       schema: {
-        title: fields.text({ label: "Título" }),
+        author: fields.text({ label: "Autor" }),
         seo: fields.object({
           title: fields.text({ label: "Título SEO" }),
           description: fields.text({
@@ -153,7 +147,20 @@ export default config({
             multiline: true,
           }),
         }),
-        github: fields.url({ label: "Github" }),
+        navbar: fields.object({
+          github: fields.url({ label: "Github" }),
+        }),
+        footer: fields.object({
+          timezone: fields.select({
+            label: "Zona horaria",
+            options: [
+              { label: "America/Mexico_City", value: "America/Mexico_City" },
+            ],
+            defaultValue: "America/Mexico_City",
+          }),
+          location: fields.text({ label: "Ubicación" }),
+          coordinates: fields.text({ label: "Coordenadas" }),
+        }),
       },
     }),
   },

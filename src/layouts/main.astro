@@ -59,7 +59,7 @@ const settings = await reader.singletons.settings.read();
     <div class="grid min-h-dvh grid-rows-[auto_1fr_auto]">
       <Navigation />
       <slot />
-      <Footer title={settings?.title} />
+      <Footer title={settings?.author} />
     </div>
   </body>
 </html>
