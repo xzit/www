@@ -13,8 +13,8 @@ about:
     - label: bluesky
       url: https://bsky.app/profile/xzit.dev
 projects:
-  - cosplay-land
   - emprende-uno
+  - cosplay-land
 stack:
   - tech: nextjs
   - tech: reactjs

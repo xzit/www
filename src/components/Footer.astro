@@ -2,6 +2,7 @@
 import LiveClock from "@/components/LiveClock";
 import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "keystatic.config";
+import ScrambleText from "@/components/ScrambleText";
 
 const { title } = Astro.props;
 
@@ -42,13 +43,19 @@ const settings = await reader.singletons.settings.read();
           </div>
           <div class="text-muted-foreground">
             <p>
-              &gt; SYSTEM TIME: <LiveClock
-                timezone={settings?.footer.timezone}
-                client:load
-              />
+              &gt; <ScrambleText text="SYSTEM TIME" client:load />:
+              <LiveClock timezone={settings?.footer.timezone} client:load />
             </p>
-            <p>&gt; LOCATION: {settings?.footer.location}</p>
-            <p>&gt; COORDINATES: {settings?.footer.coordinates}</p>
+            <p>
+              &gt; <ScrambleText text="LOCATION" client:load />: {
+                settings?.footer.location
+              }
+            </p>
+            <p>
+              &gt; <ScrambleText text="COORDINATES" client:load />: {
+                settings?.footer.coordinates
+              }
+            </p>
           </div>
         </div>
         <svg
@@ -65,17 +72,21 @@ const settings = await reader.singletons.settings.read();
         class="col-span-2 h-min w-full flex-1 border-t px-4 py-6 md:border-t-0 md:p-6"
       >
         <div class="flex w-full justify-between gap-4">
-          <div class="space-y-2 text-2xl sm:text-3xl">
-            <div>Estemos en contacto</div>
-            <div>
-              <a
-                href="mailto:hi@xzit.dev"
-                class="hover:bg-foreground hover:text-background inline-flex font-bold underline transition-colors"
-              >
-                hi@xzit.dev
-              </a>
-            </div>
-          </div>
+          {
+            settings?.email && (
+              <div class="space-y-2 text-2xl/6">
+                <div>Estemos en contacto</div>
+                <div>
+                  <a
+                    href={`mailto:${settings?.email}`}
+                    class="hover:bg-foreground hover:text-background inline-flex font-bold underline hover:no-underline"
+                  >
+                    {settings?.email}
+                  </a>
+                </div>
+              </div>
+            )
+          }
         </div>
       </div>
       <div class="col-span-2 h-min w-full self-end border-t px-4 py-6 md:p-6">

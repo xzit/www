@@ -30,6 +30,28 @@ export default config({
         }),
       },
     }),
+    pages: collection({
+      label: "Páginas",
+      slugField: "title",
+      path: "src/content/pages/*",
+      entryLayout: "content",
+      format: { contentField: "content" },
+      schema: {
+        title: fields.slug({ name: { label: "Título" } }),
+        description: fields.text({
+          label: "Descripción",
+          multiline: true,
+        }),
+        content: fields.markdoc({ label: "Contenido" }),
+        seo: fields.object({
+          title: fields.text({ label: "Título SEO" }),
+          description: fields.text({
+            label: "Descripción SEO",
+            multiline: true,
+          }),
+        }),
+      },
+    }),
     projects: collection({
       label: "Proyectos",
       slugField: "title",
@@ -140,6 +162,7 @@ export default config({
       path: "src/content/settings",
       schema: {
         author: fields.text({ label: "Autor" }),
+        email: fields.text({ label: "Correo electrónico" }),
         seo: fields.object({
           title: fields.text({ label: "Título SEO" }),
           description: fields.text({

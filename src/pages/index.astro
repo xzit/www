@@ -7,6 +7,9 @@ import TechStack from "@/components/home/TechStack";
 import Projects from "@/components/home/Projects.astro";
 import LatestPosts from "@/components/home/LatestPosts.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
+import { RiArrowRightLine } from "@remixicon/react";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
 
 const reader = createReader(process.cwd(), keystaticConfig);
 const home = await reader.singletons.home.read();
@@ -37,7 +40,10 @@ const posts: CollectionEntry<"posts">[] = allPosts.sort(
 );
 ---
 
-<Layout title="Xzit" description="">
+<Layout
+  title="Xzit // Desarrollador Frontend y Emprendedor Digital en México"
+  description="Acompáñame en mi diario de desarrollo web donde construyo startups reales como Emprende.uno y Cosplay.land. Aprende sobre desarrollo, producto y lanzamientos."
+>
   <div class="flex-1 space-y-10">
     {
       projects.length !== 0 && (
@@ -58,7 +64,18 @@ const posts: CollectionEntry<"posts">[] = allPosts.sort(
     {
       posts.length !== 0 && (
         <div class="space-y-4">
-          <h2 class="text-4xl">Blog</h2>
+          <div class="flex justify-between gap-4">
+            <h2 class="text-4xl">Blog</h2>
+            <a
+              href="/blog"
+              class={cn(
+                buttonVariants({ variant: "link", size: "sm" }),
+                "inline-flex items-center gap-2",
+              )}
+            >
+              Ver todo <RiArrowRightLine />
+            </a>
+          </div>
           <LatestPosts posts={posts.slice(0, 11)} />
         </div>
       )
