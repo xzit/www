@@ -1,0 +1,24 @@
+about:
+  title: <XZIT/>
+  description: >
+    ¡Hola mundo! Soy Joaquín, desarrollador frontend y [emprendedor
+    digital](https://joaquinolivas.com/).
+  social:
+    - label: github
+      url: https://github.com/xzit
+    - label: linkedin
+      url: https://www.linkedin.com/in/joaquin-olivas/
+    - label: x
+      url: https://x.com/xzitdev
+    - label: bluesky
+      url: https://bsky.app/profile/xzit.dev
+projects:
+  - emprende-uno
+  - cosplay-land
+stack:
+  - tech: nextjs
+  - tech: reactjs
+  - tech: tailwindcss
+  - tech: supabase
+  - tech: vercel
+  - tech: figma

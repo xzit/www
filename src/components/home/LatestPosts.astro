@@ -1,0 +1,37 @@
+---
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
+import { utc } from "@date-fns/utc";
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+  posts: CollectionEntry<"posts">[];
+};
+
+const { posts } = Astro.props;
+---
+
+<div class="grid grid-cols-1 gap-6 divide-y border-t pt-6">
+  {
+    posts.map((post) => (
+      <div class="space-y-6 pb-6">
+        <div class="space-y-2">
+          <a
+            href={`/blog/${post.slug}`}
+            class="hover:bg-foreground hover:text-background inline-flex flex-col"
+          >
+            <h3 class="text-xl font-semibold">{post.data.title}</h3>
+          </a>
+          <p class="text-muted-foreground">{post.data.description}</p>
+        </div>
+        <p class="text-muted-foreground text-sm">
+          {post.data.published &&
+            format(new Date(post.data.published), "PP", {
+              locale: es,
+              in: utc,
+            })}
+        </p>
+      </div>
+    ))
+  }
+</div>

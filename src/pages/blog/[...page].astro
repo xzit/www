@@ -1,0 +1,114 @@
+---
+import Layout from "@/layouts/main.astro";
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
+import { utc } from "@date-fns/utc";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+
+export async function getStaticPaths({ paginate }: { paginate: any }) {
+  const allPosts: CollectionEntry<"posts">[] = await getCollection(
+    "posts",
+    (post: any) => post.data.published,
+  );
+  const posts: CollectionEntry<"posts">[] = allPosts.sort(
+    (a, b) =>
+      new Date(b.data.published).getTime() -
+      new Date(a.data.published).getTime(),
+  );
+
+  return paginate(posts, {
+    pageSize: 12,
+    params: {},
+  });
+}
+
+const { page } = Astro.props as any;
+
+if (page.data.length === 0) {
+  return Astro.redirect("/");
+}
+---
+
+<Layout
+  title="Diario de desarrollo web: Cómo estoy creando una startup // Xzit"
+  description="Acompáñame en mi diario de desarrollo web donde construyo startups reales como Emprende.uno y Cosplay.land. Aprende sobre desarrollo, producto y lanzamientos."
+>
+  <div class="mx-auto w-full max-w-7xl p-4 md:px-8 md:py-10">
+    <div class="mx-auto flex max-w-2xl flex-col gap-4">
+      <div class="flex flex-col items-start justify-center">
+        <h1 class="text-4xl font-semibold">Blog</h1>
+      </div>
+      <div class="grid grid-cols-1 gap-6 divide-y border-t pt-6">
+        {
+          page.data.map((post: any) => (
+            <div class="space-y-6 pb-6">
+              <div class="space-y-2">
+                <a
+                  href={`/blog/${post.slug}`}
+                  class="hover:bg-foreground hover:text-background inline-flex flex-col"
+                >
+                  <h3 class="text-xl font-semibold">{post.data.title}</h3>
+                </a>
+                <p class="text-muted-foreground">{post.data.description}</p>
+              </div>
+              <p class="text-muted-foreground text-sm">
+                {post.data.published &&
+                  format(new Date(post.data.published), "PP", {
+                    locale: es,
+                    in: utc,
+                  })}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+    <div class="mt-12 flex justify-center">
+      <Pagination>
+        <PaginationContent>
+          {
+            page.url.prev && (
+              <PaginationItem>
+                <PaginationPrevious href={page.url.prev} />
+              </PaginationItem>
+            )
+          }
+
+          {
+            [...Array(page.lastPage)].map((_, index) => {
+              const pageNum = index + 1;
+              return (
+                <PaginationItem>
+                  <PaginationLink
+                    href={pageNum === 1 ? "/blog" : `/blog/${pageNum}`}
+                    isActive={page.currentPage === pageNum}
+                  >
+                    {pageNum}
+                  </PaginationLink>
+                </PaginationItem>
+              );
+            })
+          }
+
+          {
+            page.url.next && (
+              <PaginationItem>
+                <PaginationNext href={page.url.next} />
+              </PaginationItem>
+            )
+          }
+        </PaginationContent>
+      </Pagination>
+    </div>
+  </div>
+</Layout>
