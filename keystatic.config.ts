@@ -2,7 +2,17 @@ import { config, fields, collection, singleton } from "@keystatic/core";
 
 export default config({
   storage: {
-    kind: "local",
+    kind: "github",
+    repo: {
+      owner: "xzit",
+      name: "www",
+    },
+  },
+  ui: {
+    brand: {
+      name: "Xzit",
+      // mark: () => <img src="/favicon.svg" alt="Joaquín Olivas" height={24} />,
+    },
   },
   collections: {
     posts: collection({

@@ -4,10 +4,13 @@ import tailwindcss from "@tailwindcss/vite";
 import react from "@astrojs/react";
 import markdoc from "@astrojs/markdoc";
 import keystatic from "@keystatic/astro";
+import sitemap from "@astrojs/sitemap";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://xzit.dev/",
+
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
@@ -17,7 +20,27 @@ export default defineConfig({
       noExternal: ["gsap", "gsap/ScrambleTextPlugin"],
     },
   },
-  integrations: [react(), markdoc(), keystatic()],
+
+  i18n: {
+    locales: ["es"],
+    defaultLocale: "es",
+  },
+
+  integrations: [
+    react(),
+    markdoc(),
+    keystatic(),
+    sitemap({
+      filter: (page) =>
+        page !== "https://xzit.dev/keystatic" &&
+        page !== "https://xzit.dev/privacy",
+      i18n: {
+        defaultLocale: "es",
+        locales: { es: "es-ES" },
+      },
+    }),
+  ],
+
   experimental: {
     fonts: [
       {
@@ -44,4 +67,6 @@ export default defineConfig({
       },
     ],
   },
+
+  adapter: vercel(),
 });

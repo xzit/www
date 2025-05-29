@@ -12,8 +12,8 @@ const settings = await reader.singletons.settings.read();
 ---
 
 <Layout
-  title={post.data.seo?.value?.title || post.data.title}
-  description={post.data.seo?.value?.description || post.data.description}
+  title={post.data.seo?.title || post.data.title}
+  description={post.data.seo?.description || post.data.description}
 >
   <div class="mx-auto w-full max-w-7xl p-4 md:px-8 md:py-10">
     <div class="mx-auto flex max-w-2xl flex-col gap-8">
