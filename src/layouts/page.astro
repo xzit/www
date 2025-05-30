@@ -8,7 +8,7 @@ const { ...page } = Astro.props;
   title={page.seo?.title || page.title}
   description={page.seo?.description || page.description}
 >
-  <div class="mx-auto w-full max-w-7xl p-4 md:px-8 md:py-10">
+  <div class="mx-auto w-full max-w-7xl px-4 py-8 md:px-8 md:py-10">
     <div class="mx-auto flex max-w-2xl flex-col gap-8">
       <div class="flex flex-col gap-4">
         <h1 class="text-4xl">{page.title}</h1>

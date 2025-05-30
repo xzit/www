@@ -1,10 +1,12 @@
 ---
 import Layout from "@/layouts/main.astro";
+import Markdoc, { type Node } from "@markdoc/markdoc";
 import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "keystatic.config";
 import { utc } from "@date-fns/utc";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
+import ReadingProgress from "@/components/ReadingProgress";
 
 const { ...post } = Astro.props;
 const reader = createReader(process.cwd(), keystaticConfig);
@@ -15,14 +17,17 @@ const settings = await reader.singletons.settings.read();
   title={post.data.seo?.title || post.data.title}
   description={post.data.seo?.description || post.data.description}
 >
-  <div class="mx-auto w-full max-w-7xl p-4 md:px-8 md:py-10">
+  <div class="mx-auto w-full max-w-7xl px-4 py-8 md:px-8 md:py-10">
+    <ReadingProgress targetId="blog-post" client:idle />
     <div class="mx-auto flex max-w-2xl flex-col gap-8">
       <div class="flex flex-col gap-4">
-        <h1 class="text-4xl">{post.data.title}</h1>
-        <p class="text-muted-foreground text-sm">
+        <h1 class="text-center text-3xl sm:text-left sm:text-4xl">
+          {post.data.title}
+        </h1>
+        <p class="text-muted-foreground text-center text-sm sm:text-left">
           Por <a href="/" class="font-bold underline hover:no-underline"
             >{settings?.author}</a
-          > • Actualizado el
+          > • <span class="hidden sm:inline">Actualizado el </span>
           {
             post.data.published &&
               format(new Date(post.data.published), "PP", {
@@ -33,7 +38,8 @@ const settings = await reader.singletons.settings.read();
         </p>
       </div>
       <div
-        class="prose prose-primary text-muted-foreground dark:prose-invert prose-lg mx-auto flex w-full flex-col [&_img]:rounded-xs [&>article>*:first-child]:mt-0 [&>article>*:last-child]:mb-0"
+        id="blog-post"
+        class="prose prose-primary text-muted-foreground dark:prose-invert prose-base sm:prose-lg mx-auto flex w-full flex-col [&_img]:rounded-xs [&>article>*:first-child]:mt-0"
       >
         <slot />
       </div>
