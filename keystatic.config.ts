@@ -165,6 +165,31 @@ export default config({
               props.fields.tech.value || "Selecciona una tecnología",
           },
         ),
+        seo: fields.object({
+          title: fields.text({ label: "Título SEO" }),
+          description: fields.text({
+            label: "Descripción SEO",
+            multiline: true,
+          }),
+        }),
+      },
+    }),
+    blog: singleton({
+      label: "Blog",
+      path: "src/content/blog",
+      schema: {
+        title: fields.text({ label: "Título" }),
+        description: fields.text({
+          label: "Descripción",
+          multiline: true,
+        }),
+        seo: fields.object({
+          title: fields.text({ label: "Título SEO" }),
+          description: fields.text({
+            label: "Descripción SEO",
+            multiline: true,
+          }),
+        }),
       },
     }),
     settings: singleton({

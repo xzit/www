@@ -4,6 +4,8 @@ import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { utc } from "@date-fns/utc";
 import { getCollection, type CollectionEntry } from "astro:content";
+import { createReader } from "@keystatic/core/reader";
+import keystaticConfig from "keystatic.config";
 
 import {
   Pagination,
@@ -34,14 +36,18 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
 
 const { page } = Astro.props as any;
 
+const reader = createReader(process.cwd(), keystaticConfig);
+const blog = await reader.singletons.blog.read();
+const settings = await reader.singletons.settings.read();
+
 if (page.data.length === 0) {
   return Astro.redirect("/");
 }
 ---
 
 <Layout
-  title="Diario de desarrollo web: Cómo estoy creando una startup // Xzit"
-  description="Acompáñame en mi diario de desarrollo web donde construyo startups reales como Emprende.uno y Cosplay.land. Aprende sobre desarrollo, producto y lanzamientos."
+  title={blog?.seo?.title || settings?.seo?.title}
+  description={blog?.seo?.description || settings?.seo?.description}
 >
   <div class="mx-auto w-full max-w-7xl px-4 py-8 md:px-8 md:py-10">
     <div class="mx-auto flex max-w-2xl flex-col gap-4">

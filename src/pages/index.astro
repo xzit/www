@@ -13,6 +13,7 @@ import { buttonVariants } from "@/components/ui/button";
 
 const reader = createReader(process.cwd(), keystaticConfig);
 const home = await reader.singletons.home.read();
+const settings = await reader.singletons.settings.read();
 
 type Project = Awaited<ReturnType<typeof reader.collections.projects.read>>;
 type FeaturedProject = (Project extends null ? never : Project) & {
@@ -41,8 +42,8 @@ const posts: CollectionEntry<"posts">[] = allPosts.sort(
 ---
 
 <Layout
-  title="Xzit // Desarrollador Frontend y Emprendedor Digital en México"
-  description="Acompáñame en mi diario de desarrollo web donde construyo startups reales como Emprende.uno y Cosplay.land. Aprende sobre desarrollo, producto y lanzamientos."
+  title={home?.seo?.title || settings?.seo?.title}
+  description={home?.seo?.description || settings?.seo?.description}
 >
   <div class="flex-1 space-y-10">
     {
