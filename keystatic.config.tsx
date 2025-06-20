@@ -11,7 +11,7 @@ export default config({
   ui: {
     brand: {
       name: "Xzit",
-      // mark: () => <img src="/favicon.svg" alt="Joaquín Olivas" height={24} />,
+      mark: () => <img src="/favicon-96x96.png" alt="Xzit" height={24} />,
     },
   },
   collections: {
@@ -84,6 +84,7 @@ export default config({
           defaultValue: "paused",
         }),
         url: fields.url({ label: "URL" }),
+        github: fields.text({ label: "Github" }),
         image: fields.image({ label: "Imagen" }),
         seo: fields.object({
           title: fields.text({ label: "Título SEO" }),
