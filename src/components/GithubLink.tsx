@@ -7,7 +7,7 @@ export function GitHubLink({ repo }: { repo: string }) {
     <a
       href={`https://github.com/${repo}`}
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer"
       className={cn(buttonVariants({ variant: "ghost" }))}
     >
       <RiGithubFill className="size-5" />

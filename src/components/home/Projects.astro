@@ -57,11 +57,12 @@ const { items } = Astro.props;
         <CardContent>
           <p>{project.description}</p>
         </CardContent>
-        <CardFooter>
+        <CardFooter className="flex items-center gap-2">
           {project.url && (
             <a
               href={project.url}
               target="_blank"
+              rel="noopener"
               class={cn(buttonVariants({ variant: "outline" }))}
             >
               Ver proyecto <RiArrowRightLine className="size-5" />
