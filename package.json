@@ -13,7 +13,7 @@
     "@astrojs/mdx": "^4.3.0",
     "@astrojs/react": "^4.3.0",
     "@astrojs/sitemap": "^3.4.1",
-    "@astrojs/vercel": "^8.2.0",
+    "@astrojs/vercel": "^8.0.4",
     "@date-fns/tz": "^1.2.0",
     "@date-fns/utc": "^2.1.0",
     "@gsap/react": "^2.1.2",
