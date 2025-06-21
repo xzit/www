@@ -15,6 +15,7 @@ about:
 projects:
   - emprende-uno
   - cosplay-land
+repos:
   - shortastic
 stack:
   - tech: nextjs
