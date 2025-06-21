@@ -144,6 +144,16 @@ export default config({
             itemLabel: (props) => props.value || "Selecciona un proyecto",
           },
         ),
+        repos: fields.array(
+          fields.relationship({
+            label: "Repositorios",
+            collection: "projects",
+          }),
+          {
+            label: "Repositorios",
+            itemLabel: (props) => props.value || "Selecciona un repositorio",
+          },
+        ),
         stack: fields.array(
           fields.object({
             tech: fields.select({
