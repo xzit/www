@@ -1,0 +1,39 @@
+---
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { GitHubLink } from "@/components/GithubStars";
+
+const { items } = Astro.props;
+---
+
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+  {
+    items.map((project: any) => (
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-xl">
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener"
+              class="hover:bg-foreground hover:text-background inline-flex flex-col underline hover:no-underline"
+            >
+              {project.title}
+            </a>
+          </CardTitle>
+          <CardDescription className="flex items-center gap-3">
+            <p>{project.description}</p>
+          </CardDescription>
+        </CardHeader>
+        <CardFooter className="flex items-center gap-2">
+          {project.github && <GitHubLink repo={project.github} client:load />}
+        </CardFooter>
+      </Card>
+    ))
+  }
+</div>

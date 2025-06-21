@@ -11,7 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { RiArrowRightLine } from "@remixicon/react";
-import { GitHubLink } from "@/components/GithubLink";
+import { GitHubLink } from "@/components/GithubStars";
 
 const { items } = Astro.props;
 ---
@@ -31,7 +31,7 @@ const { items } = Astro.props;
                     ? "bg-green-400"
                     : project.status === "in-progress"
                       ? "bg-orange-400"
-                      : "bg-red-400",
+                      : "bg-red-400"
                 )}
               />
               <span
@@ -41,7 +41,7 @@ const { items } = Astro.props;
                     ? "bg-green-500"
                     : project.status === "in-progress"
                       ? "bg-orange-500"
-                      : "bg-red-500",
+                      : "bg-red-500"
                 )}
               />
             </span>
@@ -68,7 +68,16 @@ const { items } = Astro.props;
               Ver proyecto <RiArrowRightLine className="size-5" />
             </a>
           )}
-          {project.github && <GitHubLink repo={project.github} />}
+          {project.github && (
+            <a
+              href={`https://github.com/${project.github}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class={cn(buttonVariants({ variant: "ghost" }), "px-2.5")}
+            >
+              <GitHubLink repo={project.github} client:load />
+            </a>
+          )}
         </CardFooter>
       </Card>
     ))

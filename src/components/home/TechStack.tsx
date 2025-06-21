@@ -62,7 +62,7 @@ export default function TechStack({ stack }: Props) {
                         <Icon className="size-16" />
                       </div>
                     </TooltipTrigger>
-                    <TooltipContent>{name}</TooltipContent>
+                    <TooltipContent side="bottom">{name}</TooltipContent>
                   </Tooltip>
                 );
               })}
