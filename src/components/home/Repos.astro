@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { GitHubLink } from "@/components/GithubStars";
+import { GitHubStars } from "@/components/GithubStars";
 
 const { items } = Astro.props;
 ---
@@ -31,7 +31,7 @@ const { items } = Astro.props;
           </CardDescription>
         </CardHeader>
         <CardFooter className="flex items-center gap-2">
-          {project.github && <GitHubLink repo={project.github} client:load />}
+          {project.github && <GitHubStars repo={project.github} client:load />}
         </CardFooter>
       </Card>
     ))

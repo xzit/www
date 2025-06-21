@@ -11,7 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { RiArrowRightLine } from "@remixicon/react";
-import { GitHubLink } from "@/components/GithubStars";
+import { GitHubStars } from "@/components/GithubStars";
 
 const { items } = Astro.props;
 ---
@@ -75,7 +75,7 @@ const { items } = Astro.props;
               rel="noopener noreferrer"
               class={cn(buttonVariants({ variant: "ghost" }), "px-2.5")}
             >
-              <GitHubLink repo={project.github} client:load />
+              <GitHubStars repo={project.github} client:load />
             </a>
           )}
         </CardFooter>

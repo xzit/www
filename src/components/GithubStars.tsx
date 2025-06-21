@@ -1,9 +1,7 @@
-import { buttonVariants } from "@/components/ui/button";
 import { RiGithubFill } from "@remixicon/react";
-import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
-export function GitHubLink({ repo }: { repo: string }) {
+export function GitHubStars({ repo }: { repo: string }) {
   return (
     <div className="flex items-center gap-2">
       <RiGithubFill className="size-6" />
