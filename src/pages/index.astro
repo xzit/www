@@ -5,6 +5,7 @@ import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "keystatic.config";
 import TechStack from "@/components/home/TechStack";
 import Projects from "@/components/home/Projects.astro";
+import Repos from "@/components/home/Repos.astro";
 import LatestPosts from "@/components/home/LatestPosts.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { RiArrowRightLine } from "@remixicon/react";
@@ -29,6 +30,17 @@ if (home && Array.isArray(home.projects)) {
     })
   );
   projects = allFeatured.filter((project) => project !== null);
+}
+
+let repos: FeaturedProject[] = [];
+if (home && Array.isArray(home.repos)) {
+  const allFeatured = await Promise.all(
+    home.repos.map(async (slug) => {
+      const project = await reader.collections.projects.read(slug);
+      return { ...project, slug } as FeaturedProject;
+    })
+  );
+  repos = allFeatured.filter((project) => project !== null);
 }
 
 const allPosts: CollectionEntry<"posts">[] = await getCollection(
@@ -59,6 +71,14 @@ const posts: CollectionEntry<"posts">[] = allPosts.sort(
         <div class="space-y-4">
           <h2 class="text-4xl">Tecnologías</h2>
           <TechStack stack={home?.stack ?? []} client:load />
+        </div>
+      )
+    }
+    {
+      repos.length !== 0 && (
+        <div class="space-y-4">
+          <h2 class="text-4xl">Repositorios</h2>
+          <Repos items={repos} />
         </div>
       )
     }
