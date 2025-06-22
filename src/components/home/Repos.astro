@@ -6,15 +6,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { GitHubStars } from "@/components/GithubStars";
+import { GitHubRepo } from "@/components/GithubRepo";
 
 const { items } = Astro.props;
 ---
 
-<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
   {
     items.map((project: any) => (
-      <Card>
+      <Card className="grid grid-rows-[1fr_auto]">
         <CardHeader>
           <CardTitle className="text-xl">
             <a
@@ -31,7 +31,11 @@ const { items } = Astro.props;
           </CardDescription>
         </CardHeader>
         <CardFooter className="flex items-center gap-2">
-          {project.github && <GitHubStars repo={project.github} client:load />}
+          {project.github && (
+            <div class="flex items-center gap-2">
+              <GitHubRepo repo={project.github} client:load />
+            </div>
+          )}
         </CardFooter>
       </Card>
     ))
