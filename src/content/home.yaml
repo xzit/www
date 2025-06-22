@@ -15,8 +15,6 @@ about:
 projects:
   - emprende-uno
   - cosplay-land
-repos:
-  - shortastic
 stack:
   - tech: nextjs
   - tech: reactjs
@@ -24,9 +22,12 @@ stack:
   - tech: supabase
   - tech: vercel
   - tech: figma
+repos:
+  - shortastic
 seo:
-  title: Xzit // Desarrollador Frontend y Emprendedor Digital en México
+  title: Xzit // Frontend Developer & Entrepreneur building real startups
   description: >-
-    Acompáñame en mi diario de desarrollo web donde construyo startups reales
-    como Emprende.uno y Cosplay.land. Aprende sobre desarrollo, producto y
-    lanzamientos.
+    I'm a frontend developer and startup builder sharing my journey through
+    real-world web development. Follow along as I build and launch digital
+    products like Emprende.uno and Cosplay.land. Learn about modern frontend
+    development, product design, and startup launches — from idea to production.
