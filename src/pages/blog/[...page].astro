@@ -20,12 +20,12 @@ import {
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   const allPosts: CollectionEntry<"posts">[] = await getCollection(
     "posts",
-    (post: any) => post.data.published,
+    (post: any) => post.data.published
   );
   const posts: CollectionEntry<"posts">[] = allPosts.sort(
     (a, b) =>
-      new Date(b.data.published).getTime() -
-      new Date(a.data.published).getTime(),
+      new Date(b.data.published!).getTime() -
+      new Date(a.data.published!).getTime()
   );
 
   return paginate(posts, {

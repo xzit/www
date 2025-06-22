@@ -4,9 +4,9 @@ import { getEntry, render } from "astro:content";
 
 const privacy = await getEntry("pages", "privacy");
 
-const { Content } = await render(privacy);
+const { Content } = await render(privacy!);
 ---
 
-<Layout {...privacy.data}>
+<Layout {...privacy!.data}>
   <Content />
 </Layout>

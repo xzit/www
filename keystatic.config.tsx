@@ -22,74 +22,107 @@ export default config({
       entryLayout: "content",
       format: { contentField: "content" },
       schema: {
-        title: fields.slug({ name: { label: "Título" } }),
+        title: fields.slug({ name: { label: "Title" } }),
         description: fields.text({
-          label: "Descripción",
+          label: "Description",
           multiline: true,
         }),
-        content: fields.markdoc({ label: "Contenido" }),
+        content: fields.markdoc({ label: "Content" }),
         published: fields.date({
-          label: "Publicado",
+          label: "Published",
         }),
         seo: fields.object({
-          title: fields.text({ label: "Título SEO" }),
+          title: fields.text({ label: "Title SEO" }),
           description: fields.text({
-            label: "Descripción SEO",
+            label: "Description SEO",
             multiline: true,
           }),
         }),
       },
     }),
     pages: collection({
-      label: "Páginas",
+      label: "Pages",
       slugField: "title",
       path: "src/content/pages/*",
       entryLayout: "content",
       format: { contentField: "content" },
       schema: {
-        title: fields.slug({ name: { label: "Título" } }),
+        title: fields.slug({ name: { label: "Title" } }),
         description: fields.text({
-          label: "Descripción",
+          label: "Description",
           multiline: true,
         }),
-        content: fields.markdoc({ label: "Contenido" }),
+        content: fields.markdoc({ label: "Content" }),
         seo: fields.object({
-          title: fields.text({ label: "Título SEO" }),
+          title: fields.text({ label: "Title SEO" }),
           description: fields.text({
-            label: "Descripción SEO",
+            label: "Description SEO",
             multiline: true,
           }),
         }),
       },
     }),
     projects: collection({
-      label: "Proyectos",
+      label: "Projects",
       slugField: "title",
       path: "src/content/projects/*",
       format: { contentField: "content" },
       schema: {
-        title: fields.slug({ name: { label: "Título" } }),
+        title: fields.slug({ name: { label: "Title" } }),
         description: fields.text({
-          label: "Descripción",
+          label: "Description",
           multiline: true,
         }),
-        content: fields.markdoc({ label: "Contenido" }),
+        content: fields.markdoc({ label: "Content" }),
         status: fields.select({
-          label: "Estado",
+          label: "Status",
           options: [
-            { label: "En línea", value: "published" },
-            { label: "En desarrollo", value: "in-progress" },
-            { label: "En pausa", value: "paused" },
+            { label: "Live", value: "published" },
+            { label: "In development", value: "in-progress" },
+            { label: "Paused", value: "paused" },
           ],
           defaultValue: "paused",
         }),
         url: fields.url({ label: "URL" }),
         github: fields.text({ label: "Github" }),
-        image: fields.image({ label: "Imagen" }),
+        image: fields.image({ label: "Image" }),
         seo: fields.object({
-          title: fields.text({ label: "Título SEO" }),
+          title: fields.text({ label: "Title SEO" }),
           description: fields.text({
-            label: "Descripción SEO",
+            label: "Description SEO",
+            multiline: true,
+          }),
+        }),
+      },
+    }),
+    repos: collection({
+      label: "Repos",
+      slugField: "title",
+      path: "src/content/repos/*",
+      format: { contentField: "content" },
+      schema: {
+        title: fields.slug({ name: { label: "Title" } }),
+        description: fields.text({
+          label: "Description",
+          multiline: true,
+        }),
+        content: fields.markdoc({ label: "Content" }),
+        status: fields.select({
+          label: "Status",
+          options: [
+            { label: "Live", value: "published" },
+            { label: "In development", value: "in-progress" },
+            { label: "Paused", value: "paused" },
+          ],
+          defaultValue: "paused",
+        }),
+        url: fields.url({ label: "URL" }),
+        github: fields.text({ label: "Github" }),
+        image: fields.image({ label: "Image" }),
+        seo: fields.object({
+          title: fields.text({ label: "Title SEO" }),
+          description: fields.text({
+            label: "Description SEO",
             multiline: true,
           }),
         }),
@@ -98,13 +131,13 @@ export default config({
   },
   singletons: {
     home: singleton({
-      label: "Inicio",
+      label: "Home",
       path: "src/content/home",
       schema: {
         about: fields.object({
-          title: fields.text({ label: "Título" }),
+          title: fields.text({ label: "Title" }),
           description: fields.markdoc.inline({
-            label: "Descripción",
+            label: "Description",
           }),
           cv: fields.file({
             label: "CV",
@@ -114,7 +147,7 @@ export default config({
           social: fields.array(
             fields.object({
               label: fields.select({
-                label: "Red social",
+                label: "Social",
                 options: [
                   { label: "Github", value: "github" },
                   { label: "LinkedIn", value: "linkedin" },
@@ -128,36 +161,26 @@ export default config({
               url: fields.url({ label: "URL" }),
             }),
             {
-              label: "Red social",
+              label: "Social",
               itemLabel: (props) =>
-                props.fields.label.value || "Selecciona una red social",
+                props.fields.label.value || "Select a social",
             },
           ),
         }),
         projects: fields.array(
           fields.relationship({
-            label: "Proyectos",
+            label: "Projects",
             collection: "projects",
           }),
           {
-            label: "Proyectos",
-            itemLabel: (props) => props.value || "Selecciona un proyecto",
-          },
-        ),
-        repos: fields.array(
-          fields.relationship({
-            label: "Repositorios",
-            collection: "projects",
-          }),
-          {
-            label: "Repositorios",
-            itemLabel: (props) => props.value || "Selecciona un repositorio",
+            label: "Projects",
+            itemLabel: (props) => props.value || "Select a project",
           },
         ),
         stack: fields.array(
           fields.object({
             tech: fields.select({
-              label: "Tecnologías",
+              label: "Tech Stack",
               options: [
                 { label: "Next.js", value: "nextjs" },
                 { label: "React.js", value: "reactjs" },
@@ -171,15 +194,24 @@ export default config({
             }),
           }),
           {
-            label: "Tecnologías",
-            itemLabel: (props) =>
-              props.fields.tech.value || "Selecciona una tecnología",
+            label: "Tech Stack",
+            itemLabel: (props) => props.fields.tech.value || "Select a tech",
+          },
+        ),
+        repos: fields.array(
+          fields.relationship({
+            label: "Repos",
+            collection: "repos",
+          }),
+          {
+            label: "Repos",
+            itemLabel: (props) => props.value || "Select a repo",
           },
         ),
         seo: fields.object({
-          title: fields.text({ label: "Título SEO" }),
+          title: fields.text({ label: "Title SEO" }),
           description: fields.text({
-            label: "Descripción SEO",
+            label: "Description SEO",
             multiline: true,
           }),
         }),
@@ -189,30 +221,30 @@ export default config({
       label: "Blog",
       path: "src/content/blog",
       schema: {
-        title: fields.text({ label: "Título" }),
+        title: fields.text({ label: "Title" }),
         description: fields.text({
-          label: "Descripción",
+          label: "Description",
           multiline: true,
         }),
         seo: fields.object({
-          title: fields.text({ label: "Título SEO" }),
+          title: fields.text({ label: "Title SEO" }),
           description: fields.text({
-            label: "Descripción SEO",
+            label: "Description SEO",
             multiline: true,
           }),
         }),
       },
     }),
     settings: singleton({
-      label: "Configuración",
+      label: "Settings",
       path: "src/content/settings",
       schema: {
-        author: fields.text({ label: "Autor" }),
-        email: fields.text({ label: "Correo electrónico" }),
+        author: fields.text({ label: "Author" }),
+        email: fields.text({ label: "Email" }),
         seo: fields.object({
-          title: fields.text({ label: "Título SEO" }),
+          title: fields.text({ label: "Title SEO" }),
           description: fields.text({
-            label: "Descripción SEO",
+            label: "Description SEO",
             multiline: true,
           }),
         }),
@@ -221,14 +253,14 @@ export default config({
         }),
         footer: fields.object({
           timezone: fields.select({
-            label: "Zona horaria",
+            label: "Timezone",
             options: [
               { label: "America/Mexico_City", value: "America/Mexico_City" },
             ],
             defaultValue: "America/Mexico_City",
           }),
-          location: fields.text({ label: "Ubicación" }),
-          coordinates: fields.text({ label: "Coordenadas" }),
+          location: fields.text({ label: "Location" }),
+          coordinates: fields.text({ label: "Coordinates" }),
         }),
       },
     }),

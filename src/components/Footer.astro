@@ -44,7 +44,10 @@ const settings = await reader.singletons.settings.read();
           <div class="text-muted-foreground">
             <p>
               &gt; <ScrambleText text="SYSTEM TIME" client:load />:
-              <LiveClock timezone={settings?.footer.timezone} client:load />
+              <LiveClock
+                timezone={settings?.footer.timezone}
+                client:only="react"
+              />
             </p>
             <p>
               &gt; <ScrambleText text="LOCATION" client:load />: {
@@ -75,13 +78,13 @@ const settings = await reader.singletons.settings.read();
           {
             settings?.email && (
               <div class="space-y-2 text-2xl/6">
-                <div>Estemos en contacto</div>
+                <div>This could've been an email</div>
                 <div>
                   <a
                     href={`mailto:${settings?.email}`}
                     class="hover:bg-foreground hover:text-background inline-flex font-bold underline hover:no-underline"
                   >
-                    {settings?.email}
+                    mailto:{settings?.email}
                   </a>
                 </div>
               </div>
@@ -95,10 +98,10 @@ const settings = await reader.singletons.settings.read();
         >
           <span class="text-center md:text-left"
             >&copy; {new Date().getFullYear()}
-            {title}. Todos los derechos reservados.</span
+            {title}. All rights reserved.</span
           >
           <a href="/privacy" class="underline hover:no-underline">
-            Aviso de privacidad
+            Privacy Policy
           </a>
         </div>
       </div>
