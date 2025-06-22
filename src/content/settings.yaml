@@ -3,10 +3,9 @@ email: hi@xzit.dev
 seo:
   title: Xzit // Frontend Developer & Entrepreneur building real startups
   description: >-
-    I'm a frontend developer and startup builder sharing my journey through
-    real-world web development. Follow along as I build and launch digital
-    products like Emprende.uno and Cosplay.land. Learn about modern frontend
-    development, product design, and startup launches — from idea to production.
+    I'm a frontend developer and startup builder sharing real startup projects
+    like Emprende.uno and Cosplay.land. Learn about web development, product
+    design, and launches—from idea to production.
 navbar:
   github: https://github.com/xzit/www
 footer:
