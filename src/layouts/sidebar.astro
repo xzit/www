@@ -53,7 +53,7 @@ const iconMap: Record<string, { name: string; icon: RemixiconComponentType }> =
           <div
             class="text-muted-foreground [&_a]:hover:bg-foreground [&_a]:hover:text-background text-lg text-balance hyphens-auto [&_a]:underline [&_a]:decoration-2 [&_a]:underline-offset-3 [&_a]:hover:no-underline [&_article]:space-y-4"
             set:html={Markdoc.renderers.html(
-              Markdoc.transform(home?.about.description?.node as Node)
+              Markdoc.transform(home?.about.description?.node as Node),
             )}
           />
         </div>
