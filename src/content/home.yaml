@@ -24,6 +24,7 @@ stack:
   - tech: vercel
   - tech: figma
 repos:
+  - the-font-kit
   - shortastic
 seo:
   title: Xzit // Frontend Developer & Entrepreneur building real startups
