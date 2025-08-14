@@ -13,9 +13,9 @@ about:
     - label: bluesky
       url: https://bsky.app/profile/xzit.dev
 projects:
-  - carmen-emprende
   - emprende-uno
   - cosplay-land
+  - carmen-emprende
 stack:
   - tech: nextjs
   - tech: reactjs
