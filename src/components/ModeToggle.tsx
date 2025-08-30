@@ -1,7 +1,8 @@
 import * as React from "react";
-import { RiMoonFill, RiSunFill } from "@remixicon/react";
 
 import { Button } from "@/components/ui/button";
+
+import { RiMoonFill, RiSunFill } from "@remixicon/react";
 
 export function ModeToggle() {
   const [theme, setTheme] = React.useState<"dark" | "theme-light">();

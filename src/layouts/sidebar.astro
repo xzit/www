@@ -1,8 +1,15 @@
 ---
 import Layout from "@/layouts/main.astro";
-import Markdoc, { type Node } from "@markdoc/markdoc";
-import { createReader } from "@keystatic/core/reader";
+
 import keystaticConfig from "keystatic.config";
+import { createReader } from "@keystatic/core/reader";
+
+import Markdoc, { type Node } from "@markdoc/markdoc";
+
+import { cn } from "@/lib/utils";
+
+import ScrambleText from "@/components/ScrambleText";
+import { buttonVariants } from "@/components/ui/button";
 
 import {
   RiBlueskyFill,
@@ -14,9 +21,6 @@ import {
   RiTwitterXFill,
   type RemixiconComponentType,
 } from "@remixicon/react";
-import ScrambleText from "@/components/ScrambleText";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 const { title, description } = Astro.props;
 
