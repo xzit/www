@@ -1,15 +1,17 @@
 "use client";
 
+import { cn } from "@/lib/utils";
+
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Tooltip,
-  TooltipTrigger,
   TooltipContent,
   TooltipProvider,
+  TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { cn } from "@/lib/utils";
 
 import {
+  type RemixiconComponentType,
   RiFigmaFill,
   RiNextjsFill,
   RiNodejsFill,
@@ -17,7 +19,6 @@ import {
   RiSupabaseFill,
   RiTailwindCssFill,
   RiVercelFill,
-  type RemixiconComponentType,
 } from "@remixicon/react";
 
 type Props = {

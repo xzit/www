@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
+
 import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 
 gsap.registerPlugin(useGSAP, ScrambleTextPlugin);

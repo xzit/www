@@ -1,16 +1,18 @@
 ---
 import Layout from "@/layouts/main.astro";
+
+import { getCollection, type CollectionEntry } from "astro:content";
+
+import keystaticConfig from "keystatic.config";
+import { createReader } from "@keystatic/core/reader";
+
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { utc } from "@date-fns/utc";
-import { getCollection, type CollectionEntry } from "astro:content";
-import { createReader } from "@keystatic/core/reader";
-import keystaticConfig from "keystatic.config";
 
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -20,12 +22,12 @@ import {
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   const allPosts: CollectionEntry<"posts">[] = await getCollection(
     "posts",
-    (post: any) => post.data.published
+    (post: any) => post.data.published,
   );
   const posts: CollectionEntry<"posts">[] = allPosts.sort(
     (a, b) =>
       new Date(b.data.published!).getTime() -
-      new Date(a.data.published!).getTime()
+      new Date(a.data.published!).getTime(),
   );
 
   return paginate(posts, {

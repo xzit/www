@@ -1,5 +1,6 @@
-import { RiGitForkLine, RiStarLine } from "@remixicon/react";
 import { useEffect, useState } from "react";
+
+import { RiGitForkLine, RiStarLine } from "@remixicon/react";
 
 export function GitHubRepo({ repo }: { repo: string }) {
   return <GithubCount repo={repo} />;

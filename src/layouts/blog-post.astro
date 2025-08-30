@@ -1,10 +1,13 @@
 ---
 import Layout from "@/layouts/main.astro";
-import { createReader } from "@keystatic/core/reader";
+
 import keystaticConfig from "keystatic.config";
-import { utc } from "@date-fns/utc";
+import { createReader } from "@keystatic/core/reader";
+
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
+import { utc } from "@date-fns/utc";
+
 import ReadingProgress from "@/components/ReadingProgress";
 
 const { ...post } = Astro.props;

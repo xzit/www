@@ -1,5 +1,26 @@
 {
-  "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
+  "plugins": [
+    "prettier-plugin-astro",
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
+  ],
+  "importOrder": [
+    ".*\\.css$",
+    "^@/layouts/(.*)$",
+    "^astro",
+    "^react",
+    "^(?!@)keystatic|^@keystatic",
+    "<THIRD_PARTY_MODULES>",
+    "^@/utils/(.*)$",
+    "^@/lib/(.*)$",
+    "^@/hooks/(.*)$",
+    "^@/stores/(.*)$",
+    "^@/schemas/(.*)$",
+    "^@/components/(.*)$",
+    "^@remixicon/react$",
+    "^lucide-react$",
+    "^[./]"
+  ],
   "overrides": [
     {
       "files": "*.astro",
@@ -7,5 +28,7 @@
         "parser": "astro"
       }
     }
-  ]
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+
+import { TZDate } from "@date-fns/tz";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import { TZDate } from "@date-fns/tz";
 
 export default function LiveClock({ timezone }: { timezone?: string }) {
   const [time, setTime] = useState(
