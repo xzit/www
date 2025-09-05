@@ -20,9 +20,9 @@ stack:
   - tech: nextjs
   - tech: reactjs
   - tech: tailwindcss
-  - tech: supabase
+  - tech: flutter
   - tech: vercel
-  - tech: figma
+  - tech: supabase
 repos:
   - the-font-kit
   - shortastic
