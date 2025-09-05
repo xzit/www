@@ -13,6 +13,7 @@ import {
 import {
   type RemixiconComponentType,
   RiFigmaFill,
+  RiFlutterFill,
   RiNextjsFill,
   RiNodejsFill,
   RiReactjsFill,
@@ -29,6 +30,7 @@ const iconMap: Record<string, { name: string; icon: RemixiconComponentType }> =
   {
     nextjs: { name: "Next.js", icon: RiNextjsFill },
     reactjs: { name: "React.js", icon: RiReactjsFill },
+    flutter: { name: "Flutter", icon: RiFlutterFill },
     nodejs: { name: "Node.js", icon: RiNodejsFill },
     supabase: { name: "Supabase", icon: RiSupabaseFill },
     tailwindcss: { name: "Tailwind CSS", icon: RiTailwindCssFill },
