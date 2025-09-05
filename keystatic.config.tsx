@@ -184,6 +184,7 @@ export default config({
               options: [
                 { label: "Next.js", value: "nextjs" },
                 { label: "React.js", value: "reactjs" },
+                { label: "Flutter", value: "flutter" },
                 { label: "Node.js", value: "nodejs" },
                 { label: "Supabase", value: "supabase" },
                 { label: "Tailwind CSS", value: "tailwindcss" },
