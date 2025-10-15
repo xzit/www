@@ -17,7 +17,6 @@ about:
 projects:
   - emprende-uno
   - cosplay-land
-  - carmen-emprende
 stack:
   - item: reactjs
   - item: nextjs
