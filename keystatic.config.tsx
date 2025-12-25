@@ -11,7 +11,7 @@ export default config({
   ui: {
     brand: {
       name: "Xzit",
-      mark: () => <img src="/favicon-96x96.png" alt="Xzit" height={24} />,
+      mark: () => <img src="/favicon.svg" alt="Xzit" height={24} />,
     },
   },
   collections: {
@@ -179,24 +179,27 @@ export default config({
         ),
         stack: fields.array(
           fields.object({
-            tech: fields.select({
-              label: "Tech Stack",
+            stack: fields.select({
+              label: "Stack",
               options: [
-                { label: "Next.js", value: "nextjs" },
                 { label: "React.js", value: "reactjs" },
-                { label: "Flutter", value: "flutter" },
-                { label: "Node.js", value: "nodejs" },
+                { label: "Next.js", value: "nextjs" },
+                { label: "Astro", value: "astro" },
+                { label: "NestJS", value: "nestjs" },
+                { label: "Prisma", value: "prisma" },
                 { label: "Supabase", value: "supabase" },
+                { label: "Flutter", value: "flutter" },
+                { label: "shadcn/ui", value: "shadcnui" },
+                { label: "Better Auth", value: "betterauth" },
                 { label: "Tailwind CSS", value: "tailwindcss" },
                 { label: "Vercel", value: "vercel" },
-                { label: "Figma", value: "figma" },
               ],
-              defaultValue: "nextjs",
+              defaultValue: "reactjs",
             }),
           }),
           {
-            label: "Tech Stack",
-            itemLabel: (props) => props.fields.tech.value || "Select a tech",
+            label: "Stack",
+            itemLabel: (props) => props.fields.stack.value || "Select a stack",
           },
         ),
         repos: fields.array(
