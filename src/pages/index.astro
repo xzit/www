@@ -10,7 +10,7 @@ import { createReader } from "@keystatic/core/reader";
 
 import { cn } from "@/lib/utils";
 
-import TechStack from "@/components/home/TechStack";
+import Stack from "@/components/home/Stack";
 import Projects from "@/components/home/Projects.astro";
 import Repos from "@/components/home/Repos.astro";
 import LatestPosts from "@/components/home/LatestPosts.astro";
@@ -68,7 +68,7 @@ const posts: CollectionEntry<"posts">[] = allPosts.sort(
     {
       projects.length !== 0 && (
         <div class="space-y-4">
-          <h2 class="text-4xl">Startups</h2>
+          <h2 class="text-4xl">Projects</h2>
           <Projects items={projects} />
         </div>
       )
@@ -76,8 +76,8 @@ const posts: CollectionEntry<"posts">[] = allPosts.sort(
     {
       home?.stack?.length !== 0 && (
         <div class="space-y-4">
-          <h2 class="text-4xl">Tech Stack</h2>
-          <TechStack stack={home?.stack ?? []} client:load />
+          <h2 class="text-4xl">Stack</h2>
+          <Stack stack={home?.stack ?? []} client:load />
         </div>
       )
     }
