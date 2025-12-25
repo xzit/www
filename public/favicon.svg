@@ -1,0 +1,16 @@
+<svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .light-mode { fill: #191b19; }
+    .dark-mode { fill: #e1e6e3; }
+    
+    @media (prefers-color-scheme: dark) {
+      .light-mode { display: none; }
+    }
+    
+    @media (prefers-color-scheme: light) {
+      .dark-mode { display: none; }
+    }
+  </style>
+  <path class="light-mode" d="m19.805 5.56v.648l1.944 1.956h2.472v-2.472h-1.452l-1.548-1.548zm-7.632-5.796v2.472h1.44l1.56 1.548 1.416-1.416v-.648l-1.944-1.956zm9.576 0-2.964 2.976h-2.208l-2.964 2.952h-1.44v2.472h2.472l2.952-2.964h2.208l2.964-2.964h1.452v-2.472z" fill="#191b19" fill-rule="nonzero" transform="matrix(1.32802 0 0 1.42857 -16.1665 2.3374)"/>
+  <path class="dark-mode" d="m19.805 5.56v.648l1.944 1.956h2.472v-2.472h-1.452l-1.548-1.548zm-7.632-5.796v2.472h1.44l1.56 1.548 1.416-1.416v-.648l-1.944-1.956zm9.576 0-2.964 2.976h-2.208l-2.964 2.952h-1.44v2.472h2.472l2.952-2.964h2.208l2.964-2.964h1.452v-2.472z" fill="#e1e6e3" fill-rule="nonzero" transform="matrix(1.32802 0 0 1.42857 -16.1665 2.3374)"/>
+</svg>
