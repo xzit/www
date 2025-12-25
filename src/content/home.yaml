@@ -1,13 +1,15 @@
 about:
-  title: <XZIT/>
+  title: HELLO!
   description: >
-    Hello world! I'm Joaquín, a frontend developer and [digital
-    entrepreneur](https://joaquinolivas.com/?ref=xzit.dev).
+    I'm Joaquín, a Frontend-leaning Full-stack Developer and [Digital
+    Entrepreneur](https://joaquinolivas.com/?ref=xzit.dev).
   social:
     - label: github
       url: https://github.com/xzit
     - label: linkedin
       url: https://www.linkedin.com/in/joaquin-olivas/
+    - label: instagram
+      url: https://instagram.com/xzit.dev
     - label: x
       url: https://x.com/xzitdev
     - label: bluesky
@@ -17,18 +19,18 @@ projects:
   - cosplay-land
   - carmen-emprende
 stack:
-  - tech: nextjs
-  - tech: reactjs
-  - tech: tailwindcss
-  - tech: flutter
-  - tech: vercel
-  - tech: supabase
+  - item: reactjs
+  - item: nextjs
+  - item: astro
+  - item: nestjs
+  - item: prisma
+  - item: supabase
 repos:
   - the-font-kit
   - shortastic
 seo:
-  title: Xzit // Frontend Developer & Entrepreneur building real startups
+  title: XZIT // Full-stack Developer, Product Engineer & Startup Builder
   description: >-
-    I'm a frontend developer and startup builder sharing real startup projects
+    I'm a Frontend-leaning Full-stack Developer and startup builder sharing real projects
     like Emprende.uno and Cosplay.land. Learn about web development, product
     design, and launches—from idea to production.

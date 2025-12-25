@@ -1,19 +1,3 @@
-export function NextjsIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      role="img"
-      viewBox="0 0 24 24"
-      height={24}
-      width={24}
-      xmlns="http://www.w3.org/2000/svg"
-      fill="currentColor"
-      {...props}
-    >
-      <path d="M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727Zm-3.332-8.533 1.6 2.061V7.2h-1.6v6.245Z" />
-    </svg>
-  );
-}
-
 export function ReactJsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -30,7 +14,7 @@ export function ReactJsIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-export function TailwindCssIcon(props: React.SVGProps<SVGSVGElement>) {
+export function NextjsIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       role="img"
@@ -41,55 +25,7 @@ export function TailwindCssIcon(props: React.SVGProps<SVGSVGElement>) {
       fill="currentColor"
       {...props}
     >
-      <path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z" />
-    </svg>
-  );
-}
-
-export function ShadcnUiIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      role="img"
-      viewBox="0 0 24 24"
-      height={24}
-      width={24}
-      xmlns="http://www.w3.org/2000/svg"
-      fill="currentColor"
-      {...props}
-    >
-      <path d="M22.219 11.784 11.784 22.219c-.407.407-.407 1.068 0 1.476.407.407 1.068.407 1.476 0L23.695 13.26c.407-.408.407-1.069 0-1.476-.408-.407-1.069-.407-1.476 0ZM20.132.305.305 20.132c-.407.407-.407 1.068 0 1.476.408.407 1.069.407 1.476 0L21.608 1.781c.407-.407.407-1.068 0-1.476-.408-.407-1.069-.407-1.476 0Z" />
-    </svg>
-  );
-}
-
-export function VercelIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      role="img"
-      viewBox="0 0 24 24"
-      height={24}
-      width={24}
-      xmlns="http://www.w3.org/2000/svg"
-      fill="currentColor"
-      {...props}
-    >
-      <path d="m12 1.608 12 20.784H0Z" />
-    </svg>
-  );
-}
-
-export function SupabaseIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      role="img"
-      viewBox="0 0 24 24"
-      height={24}
-      width={24}
-      xmlns="http://www.w3.org/2000/svg"
-      fill="currentColor"
-      {...props}
-    >
-      <path d="M11.9 1.036c-.015-.986-1.26-1.41-1.874-.637L.764 12.05C-.33 13.427.65 15.455 2.409 15.455h9.579l.113 7.51c.014.985 1.259 1.408 1.873.636l9.262-11.653c1.093-1.375.113-3.403-1.645-3.403h-9.642z" />
+      <path d="M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727Zm-3.332-8.533 1.6 2.061V7.2h-1.6v6.245Z" />
     </svg>
   );
 }
@@ -142,7 +78,7 @@ export function PrismaIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-export function FlutterIcon(props: React.SVGProps<SVGSVGElement>) {
+export function SupabaseIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       role="img"
@@ -153,23 +89,7 @@ export function FlutterIcon(props: React.SVGProps<SVGSVGElement>) {
       fill="currentColor"
       {...props}
     >
-      <path d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.357zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z" />
-    </svg>
-  );
-}
-
-export function BetterAuthIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      role="img"
-      viewBox="0 0 24 24"
-      height={24}
-      width={24}
-      xmlns="http://www.w3.org/2000/svg"
-      fill="currentColor"
-      {...props}
-    >
-      <path d="M0 3.39v17.22h5.783V15.06h6.434V8.939H5.783V3.39ZM12.217 8.94h5.638v6.122h-5.638v5.548H24V3.391H12.217Z" />
+      <path d="M11.9 1.036c-.015-.986-1.26-1.41-1.874-.637L.764 12.05C-.33 13.427.65 15.455 2.409 15.455h9.579l.113 7.51c.014.985 1.259 1.408 1.873.636l9.262-11.653c1.093-1.375.113-3.403-1.645-3.403h-9.642z" />
     </svg>
   );
 }
