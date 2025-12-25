@@ -10,8 +10,8 @@ export default config({
   },
   ui: {
     brand: {
-      name: "Xzit",
-      mark: () => <img src="/favicon.svg" alt="Xzit" height={24} />,
+      name: "XZIT",
+      mark: () => <img src="/favicon.svg" alt="XZIT" height={24} />,
     },
   },
   collections: {
@@ -179,7 +179,7 @@ export default config({
         ),
         stack: fields.array(
           fields.object({
-            stack: fields.select({
+            item: fields.select({
               label: "Stack",
               options: [
                 { label: "React.js", value: "reactjs" },
@@ -188,18 +188,13 @@ export default config({
                 { label: "NestJS", value: "nestjs" },
                 { label: "Prisma", value: "prisma" },
                 { label: "Supabase", value: "supabase" },
-                { label: "Flutter", value: "flutter" },
-                { label: "shadcn/ui", value: "shadcnui" },
-                { label: "Better Auth", value: "betterauth" },
-                { label: "Tailwind CSS", value: "tailwindcss" },
-                { label: "Vercel", value: "vercel" },
               ],
               defaultValue: "reactjs",
             }),
           }),
           {
             label: "Stack",
-            itemLabel: (props) => props.fields.stack.value || "Select a stack",
+            itemLabel: (props) => props.fields.item.value || "Select a stack",
           },
         ),
         repos: fields.array(

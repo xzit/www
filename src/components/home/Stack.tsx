@@ -4,16 +4,11 @@ import type { ComponentType, SVGProps } from "react";
 
 import {
   AstroIcon,
-  BetterAuthIcon,
-  FlutterIcon,
   NestjsIcon,
   NextjsIcon,
   PrismaIcon,
   ReactJsIcon,
-  ShadcnUiIcon,
   SupabaseIcon,
-  TailwindCssIcon,
-  VercelIcon,
 } from "@/icons/brands";
 
 import { cn } from "@/lib/utils";
@@ -27,7 +22,7 @@ import {
 } from "@/components/ui/tooltip";
 
 type Props = {
-  stack: readonly { stack: keyof typeof iconMap }[];
+  stack: readonly { item: keyof typeof iconMap }[];
 };
 
 const iconMap: Record<
@@ -40,11 +35,6 @@ const iconMap: Record<
   nestjs: { name: "NestJS", icon: NestjsIcon },
   prisma: { name: "Prisma", icon: PrismaIcon },
   supabase: { name: "Supabase", icon: SupabaseIcon },
-  flutter: { name: "Flutter", icon: FlutterIcon },
-  shadcnui: { name: "shadcn/ui", icon: ShadcnUiIcon },
-  betterauth: { name: "Better Auth", icon: BetterAuthIcon },
-  tailwindcss: { name: "Tailwind CSS", icon: TailwindCssIcon },
-  vercel: { name: "Vercel", icon: VercelIcon },
 };
 
 export default function Stack({ stack }: Props) {
@@ -55,13 +45,13 @@ export default function Stack({ stack }: Props) {
           <TooltipProvider>
             <div className="grid w-full grid-cols-3 items-center justify-center divide-x divide-y sm:grid-cols-6 sm:divide-y-0">
               {stack.map((value, i) => {
-                const iconData = iconMap[value.stack];
+                const iconData = iconMap[value.item];
                 if (!iconData) return null;
 
                 const { icon: Icon, name } = iconData;
 
                 return (
-                  <Tooltip key={value.stack}>
+                  <Tooltip key={value.item}>
                     <TooltipTrigger asChild>
                       <div
                         className={cn(
