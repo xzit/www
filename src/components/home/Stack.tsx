@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/tooltip";
 
 type Props = {
-  stack: readonly { tech: keyof typeof iconMap }[];
+  stack: readonly { stack: keyof typeof iconMap }[];
 };
 
 const iconMap: Record<
@@ -55,13 +55,13 @@ export default function Stack({ stack }: Props) {
           <TooltipProvider>
             <div className="grid w-full grid-cols-3 items-center justify-center divide-x divide-y sm:grid-cols-6 sm:divide-y-0">
               {stack.map((value, i) => {
-                const iconData = iconMap[value.tech];
+                const iconData = iconMap[value.stack];
                 if (!iconData) return null;
 
                 const { icon: Icon, name } = iconData;
 
                 return (
-                  <Tooltip key={value.tech}>
+                  <Tooltip key={value.stack}>
                     <TooltipTrigger asChild>
                       <div
                         className={cn(
