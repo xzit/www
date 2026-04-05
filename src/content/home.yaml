@@ -26,11 +26,12 @@ stack:
   - item: prisma
   - item: supabase
 repos:
+  - keystarlight
   - the-font-kit
   - shortastic
 seo:
   title: XZIT // Full-stack Developer, Product Engineer & Startup Builder
   description: >-
-    I'm a Frontend-leaning Full-stack Developer and startup builder sharing real projects
-    like Emprende.uno and Cosplay.land. Learn about web development, product
-    design, and launches—from idea to production.
+    I'm a Frontend-leaning Full-stack Developer and startup builder sharing real
+    projects like Emprende.uno and Cosplay.land. Learn about web development,
+    product design, and launches—from idea to production.
