@@ -5,16 +5,15 @@ import { NoiseTransition } from "@/components/NoiseTransition";
 
 <Layout title="Test">
   <main>
-    <NoiseTransition
-      colorFrom="#e0e5e2"
-      colorTo="#181b18"
-      cols={28}
-      drip={12}
-      rows={1}
-      client:load
+    <section
+      style={{
+        minHeight: "100vh",
+        background: "#181b18",
+        position: "relative",
+      }}
     >
       <h1>Sección A</h1>
-    </NoiseTransition>
+    </section>
 
     <NoiseTransition
       colorFrom="#181b18"
