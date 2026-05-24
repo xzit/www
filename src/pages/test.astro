@@ -1,0 +1,63 @@
+---
+import Layout from "@/layouts/main.astro";
+import { NoiseTransition } from "@/components/NoiseTransition";
+---
+
+<Layout title="Test">
+  <main>
+    <NoiseTransition
+      colorFrom="#e0e5e2"
+      colorTo="#181b18"
+      cols={28}
+      drip={12}
+      rows={1}
+      client:load
+    >
+      <h1>Sección A</h1>
+    </NoiseTransition>
+
+    <NoiseTransition
+      colorFrom="#181b18"
+      colorTo="#e0e5e2"
+      cols={28}
+      drip={12}
+      rows={1}
+      client:load
+    >
+      <h1>Sección B</h1>
+    </NoiseTransition>
+
+    <NoiseTransition
+      colorFrom="#e0e5e2"
+      colorTo="#181b18"
+      cols={28}
+      drip={12}
+      rows={1}
+      client:load
+    >
+      <h1>Sección C</h1>
+    </NoiseTransition>
+
+    <NoiseTransition
+      colorFrom="#181b18"
+      colorTo="#e0e5e2"
+      cols={28}
+      drip={12}
+      rows={1}
+      client:load
+    >
+      <h1>Sección D</h1>
+    </NoiseTransition>
+
+    <NoiseTransition
+      colorFrom="#e0e5e2"
+      colorTo="#181b18"
+      cols={28}
+      drip={12}
+      rows={1}
+      client:load
+    >
+      <h1>Sección E</h1>
+    </NoiseTransition>
+  </main>
+</Layout>
