@@ -1,0 +1,117 @@
+---
+import Layout from "@/layouts/main.astro";
+import { PixelDitherEffect } from "@/components/PixelDither";
+---
+
+<Layout title="Test">
+  <main>
+    {/* Efecto de píxeles fijo en la parte inferior - SIEMPRE VISIBLE */}
+    <PixelDitherEffect
+      color="#ffffff"
+      height={72}
+      blockSize={[9, 12, 3]}
+      client:load
+    />
+
+    <main class="min-h-[400vh] bg-black text-white">
+      {/* Hero Section */}
+      <section
+        class="flex min-h-screen flex-col items-center justify-center px-6"
+      >
+        <div class="max-w-3xl text-center">
+          <h1 class="mb-6 text-5xl font-bold tracking-tight md:text-7xl">
+            Efecto Pixel Dither
+          </h1>
+          <p class="text-xl text-neutral-400">
+            Haz scroll hacia abajo para ver el efecto de píxeles generándose en
+            la parte inferior de la pantalla
+          </p>
+          <div class="mt-12 animate-bounce text-neutral-500">
+            <svg
+              class="mx-auto h-8 w-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width={2}
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      {/* Content Section */}
+      <section class="px-6 py-24">
+        <div class="mx-auto max-w-4xl">
+          <h2 class="mb-8 text-3xl font-bold">¿Cómo funciona?</h2>
+          <div class="space-y-6 text-lg text-neutral-300">
+            <p>
+              Este efecto utiliza WebGL con shaders GLSL para generar un patrón
+              de dithering que simula la generación de una imagen píxel a píxel.
+            </p>
+            <p>
+              El algoritmo usa funciones de ruido y hash para generar valores
+              pseudo-aleatorios basados en la posición del scroll, creando un
+              patrón que parece aleatorio pero es consistente.
+            </p>
+            <p>
+              Los patrones de dithering (como el clásico patrón de tablero de
+              ajedrez) ayudan a crear transiciones suaves entre áreas llenas y
+              vacías.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Otra sección */}
+      <section class="px-6 py-24">
+        <div class="mx-auto max-w-4xl">
+          <h2 class="mb-8 text-3xl font-bold">Características</h2>
+          <div class="grid gap-8 md:grid-cols-2">
+            {
+              [
+                {
+                  title: "WebGL2 Shaders",
+                  description:
+                    "Usa shaders GLSL para renderizado de alto rendimiento directamente en la GPU.",
+                },
+                {
+                  title: "Patrón de Dithering",
+                  description:
+                    "Implementa el algoritmo de dithering original de monokai.com con patrones de 8 valores.",
+                },
+                {
+                  title: "Responde al Scroll",
+                  description:
+                    "El patrón se actualiza en tiempo real basándose en la posición de scroll de la página.",
+                },
+                {
+                  title: "Personalizable",
+                  description:
+                    "Puedes cambiar el color, altura y tamaño de los bloques de píxeles.",
+                },
+              ].map((feature, index) => (
+                <div class="rounded-lg border border-neutral-800 bg-neutral-900/50 p-6">
+                  <h3 class="mb-2 text-xl font-semibold">{feature.title}</h3>
+                  <p class="text-neutral-400">{feature.description}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      {/* Spacer final */}
+      <section class="flex h-screen items-center justify-center">
+        <div class="text-center">
+          <p class="text-neutral-500">
+            Sigue haciendo scroll para ver cómo el efecto cambia
+          </p>
+        </div>
+      </section>
+    </main>
+  </main>
+</Layout>
